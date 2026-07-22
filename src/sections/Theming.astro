@@ -1,0 +1,390 @@
+---
+---
+
+<section class="section" id="theming">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">// design tokens</span>
+      <nui-heading tag="2" class="section-title" text="One function. Infinite looks." />
+      <nui-paragraph class="section-lead" text="Palettes and modes switch at runtime. Tokens cascade straight into shadow DOM." />
+    </div>
+    <div class="theme-showcase reveal">
+      <nui-card class="bento-cell theme-controls">
+        <div slot="title" class="theme-controls-head">
+          <div class="theme-controls-icon">
+            <nui-icon icon="mdi:palette-outline" width="20" height="20" />
+          </div>
+          <div class="theme-controls-copy">
+            <strong>Runtime config</strong>
+            <span>CSS variables cascade into shadow DOM</span>
+          </div>
+          <nui-tag value="Live" severity="success" rounded />
+        </div>
+
+        <div class="theme-toggle-grid">
+          <div class="theme-toggle-card">
+            <div class="theme-toggle-top">
+              <nui-icon icon="mdi:layers-triple-outline" width="15" height="15" />
+              <nui-label value="Palette" />
+            </div>
+            <nui-select-button id="palette-toggle" fluid size="small" />
+          </div>
+          <div class="theme-toggle-card">
+            <div class="theme-toggle-top">
+              <nui-icon icon="mdi:theme-light-dark" width="15" height="15" />
+              <nui-label value="Mode" />
+            </div>
+            <nui-select-button id="mode-toggle" fluid size="small" />
+          </div>
+        </div>
+
+        <div class="theme-swatches" aria-hidden="true">
+          <div class="theme-swatch"><i style="--swatch: var(--nui-primary-color)"></i><span>Primary</span></div>
+          <div class="theme-swatch"><i style="--swatch: var(--nui-success-color)"></i><span>Success</span></div>
+          <div class="theme-swatch"><i style="--swatch: var(--nui-info-color)"></i><span>Info</span></div>
+          <div class="theme-swatch"><i style="--swatch: var(--nui-help-color)"></i><span>Accent</span></div>
+        </div>
+
+        <div class="theme-terminal">
+          <div class="theme-terminal-bar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="theme-terminal-title">theme.ts</span>
+            <nui-button icon="mdi:content-copy" label="" text rounded size="small" data-action="copy-theme-code" aria-label="Copy theme command" />
+          </div>
+          <pre class="theme-terminal-body"><code id="theme-code"></code></pre>
+        </div>
+      </nui-card>
+
+      <div class="theme-preview">
+        <div class="theme-preview-head">
+          <div>
+            <span class="theme-preview-eyebrow">// live preview</span>
+            <nui-heading tag="4" text="Every component reacts" class="theme-preview-title" />
+          </div>
+          <nui-avatar label="nui" shape="circle" />
+        </div>
+
+        <div class="theme-preview-grid">
+          <section class="theme-zone">
+            <header class="theme-zone-head">
+              <nui-icon icon="mdi:gesture-tap-button" width="14" height="14" />
+              <span>Actions</span>
+            </header>
+            <div class="theme-chip-row">
+              <nui-button label="Primary" severity="primary" raised size="small" />
+              <nui-button label="Success" severity="success" size="small" />
+              <nui-button label="Info" severity="info" outlined size="small" />
+              <nui-button label="Warn" severity="warn" size="small" />
+              <nui-button label="Danger" severity="danger" text size="small" />
+            </div>
+          </section>
+
+          <section class="theme-zone">
+            <header class="theme-zone-head">
+              <nui-icon icon="mdi:tag-outline" width="14" height="14" />
+              <span>Status</span>
+            </header>
+            <div class="theme-chip-row">
+              <nui-tag value="Design" severity="help" rounded />
+              <nui-tag value="Tokens" severity="info" rounded />
+              <nui-badge value="Live" severity="success" />
+              <nui-avatar label="UI" shape="circle" />
+            </div>
+          </section>
+
+          <section class="theme-zone theme-zone-wide">
+            <header class="theme-zone-head">
+              <nui-icon icon="mdi:chart-donut" width="14" height="14" />
+              <span>Token distribution</span>
+            </header>
+            <div class="theme-metrics">
+              <nui-progress-bar id="theme-progress" />
+              <nui-meter-group id="theme-meter" />
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+
+.theme-showcase {
+  display: grid;
+  gap: 1rem;
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 860px) {
+  .theme-showcase {
+    grid-template-columns: minmax(17.5rem, 0.95fr) 1.35fr;
+    align-items: stretch;
+  }
+}
+
+.theme-controls {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+}
+
+.theme-controls-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.theme-controls-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--nui-primary-color) 14%, transparent);
+  color: var(--nui-primary-color);
+  flex-shrink: 0;
+}
+
+.theme-controls-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.theme-controls-copy strong {
+  font-size: 0.9375rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.theme-controls-copy span {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  opacity: 0.55;
+}
+
+.theme-controls-head nui-tag {
+  --font-size-2xs: 0.6875rem;
+  flex-shrink: 0;
+}
+
+.theme-toggle-grid {
+  display: grid;
+  gap: 0.625rem;
+}
+
+@media (min-width: 520px) {
+  .theme-toggle-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.theme-toggle-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 0.875rem;
+  border-radius: 0.875rem;
+  border: 1px solid var(--surface-border);
+  background: color-mix(in srgb, var(--nui-bg-dark-color) 42%, transparent);
+}
+
+.theme-toggle-top {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--nui-primary-color);
+}
+
+.theme-toggle-top nui-label {
+  --font-size-2xs: 0.6875rem;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+.theme-toggle-card nui-select-button {
+  --font-size-2xs: 0.75rem;
+}
+
+.theme-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.theme-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.625rem 0.375rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--surface-border);
+  background: color-mix(in srgb, var(--nui-bg-dark-color) 35%, transparent);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.theme-swatch i {
+  display: block;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  background: var(--swatch);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--swatch) 45%, transparent);
+}
+
+.theme-terminal {
+  margin-top: auto;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  border: 1px solid var(--code-border);
+  background: var(--code-surface);
+}
+
+.theme-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.625rem;
+  border-bottom: 1px solid var(--surface-border);
+  background: color-mix(in srgb, var(--code-surface) 88%, var(--nui-primary-color) 12%);
+}
+
+.theme-terminal-title {
+  margin-right: auto;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  opacity: 0.45;
+}
+
+.theme-terminal-body {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--code-fg);
+  overflow-x: auto;
+}
+
+.theme-terminal-body .tok-fn { color: var(--tok-fn); }
+.theme-terminal-body .tok-str { color: var(--tok-str); }
+
+.theme-preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+  padding: 1.375rem;
+  border-radius: 1.25rem;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--surface-card), var(--surface-card)) padding-box,
+    linear-gradient(155deg,
+      color-mix(in srgb, var(--nui-primary-color) 38%, var(--surface-border)) 0%,
+      var(--surface-border) 42%,
+      var(--surface-border) 68%,
+      color-mix(in srgb, var(--nui-info-color) 28%, var(--surface-border)) 100%) border-box;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.theme-preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(480px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--nui-primary-color) 8%, transparent), transparent 48%);
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
+}
+
+.theme-preview:hover::after { opacity: 1; }
+
+.theme-preview-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.theme-preview-eyebrow {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--nui-primary-color);
+  margin-bottom: 0.35rem;
+}
+
+.theme-preview-title {
+  --font-size-md: 1.0625rem;
+  --font-weight-semibold: 650;
+}
+
+.theme-preview-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .theme-preview-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.theme-zone {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.0625rem;
+  border-radius: 0.875rem;
+  border: 1px solid var(--surface-border);
+  background: color-mix(in srgb, var(--nui-bg-dark-color) 38%, transparent);
+}
+
+.theme-zone-wide {
+  grid-column: 1 / -1;
+}
+
+.theme-zone-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.theme-zone-head nui-icon {
+  color: var(--nui-primary-color);
+  opacity: 0.9;
+}
+
+.theme-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.theme-metrics {
+  display: grid;
+  gap: 0.875rem;
+}
+
+#theme-progress { display: block; }
+#theme-meter { display: block; }
+</style>

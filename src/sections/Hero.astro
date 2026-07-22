@@ -1,0 +1,220 @@
+---
+import { INSTALL_COMMAND } from '../config';
+---
+
+<section class="hero">
+  <div class="aurora">
+    <div class="aurora-blob aurora-1"></div>
+    <div class="aurora-blob aurora-2"></div>
+    <div class="aurora-blob aurora-3"></div>
+  </div>
+  <div class="hero-grid-bg" aria-hidden="true">
+    <div class="hero-grid-layer hero-grid-layer-1"></div>
+    <div class="hero-grid-layer hero-grid-layer-2"></div>
+  </div>
+
+  <div class="container hero-inner">
+    <button class="hero-pill" data-action="open-url" data-url="https://www.npmjs.com/package/nucleify-ui">
+      <span class="hero-pill-dot"></span>
+      <span>v0.3 is out — 50+ components</span>
+      <nui-icon icon="mdi:arrow-right" width="14" height="14" />
+    </button>
+
+    <nui-heading tag="1" class="hero-title">
+      <span class="hero-line">The UI layer for</span>
+      <span class="hero-line gradient-text">the modern web</span>
+    </nui-heading>
+
+    <nui-paragraph class="hero-lead" text="Tree-shakeable Lit 3 web components with live theming and first-class TypeScript. Works with every framework — or none at all." />
+
+    <div class="hero-actions">
+      <nui-button label="Start Building" severity="primary" raised icon="mdi:arrow-right" icon-pos="right" data-action="scroll" data-target="#quickstart" />
+      <nui-button label="Explore Components" severity="secondary" outlined icon="mdi:view-grid-outline" data-action="scroll" data-target="#components" />
+    </div>
+
+    <div class="hero-install glass">
+      <nui-icon icon="mdi:console-line" width="16" height="16" class="hero-install-icon" />
+      <code class="install-code">{INSTALL_COMMAND}</code>
+      <nui-button icon="mdi:content-copy" label="" text rounded size="small" data-action="copy-install" aria-label="Copy install command" />
+    </div>
+  </div>
+</section>
+
+<style>
+
+.hero {
+  position: relative;
+  padding: 10rem 0 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-grid-bg {
+  --hero-dot: var(--nui-primary-color);
+  --hero-dot-soft: var(--nui-primary-hover-color);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  mask-image: radial-gradient(ellipse 78% 68% at 50% 36%, #000 8%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse 78% 68% at 50% 36%, #000 8%, transparent 76%);
+}
+
+.hero-grid-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--hero-dot) 11%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 42px 42px;
+}
+
+.hero-grid-layer {
+  position: absolute;
+  inset: -25%;
+  background-repeat: repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  will-change: mask-position, opacity;
+}
+
+.hero-grid-layer-1 {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--hero-dot) 95%, transparent) 1.6px,
+    color-mix(in srgb, var(--hero-dot) 35%, transparent) 3.5px,
+    transparent 4px
+  );
+  background-size: 42px 42px;
+  -webkit-mask-image: linear-gradient(32deg, transparent 38%, #000 50%, transparent 62%);
+  mask-image: linear-gradient(32deg, transparent 38%, #000 50%, transparent 62%);
+  -webkit-mask-size: 240% 240%;
+  mask-size: 240% 240%;
+  animation: hero-grid-wave-1 6s ease-in-out infinite;
+}
+
+.hero-grid-layer-2 {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--hero-dot-soft) 88%, transparent) 1.55px,
+    color-mix(in srgb, var(--hero-dot-soft) 30%, transparent) 3.25px,
+    transparent 3.75px
+  );
+  background-size: 42px 42px;
+  background-position: 21px 11px;
+  -webkit-mask-image: linear-gradient(-52deg, transparent 37%, #000 50%, transparent 63%);
+  mask-image: linear-gradient(-52deg, transparent 37%, #000 50%, transparent 63%);
+  -webkit-mask-size: 220% 220%;
+  mask-size: 220% 220%;
+  animation: hero-grid-wave-2 9s ease-in-out infinite;
+}
+
+@keyframes hero-grid-wave-1 {
+  0%   { -webkit-mask-position: 0% 20%; mask-position: 0% 20%; opacity: 0.08; }
+  50%  { -webkit-mask-position: 100% 80%; mask-position: 100% 80%; opacity: 1; }
+  100% { -webkit-mask-position: 0% 20%; mask-position: 0% 20%; opacity: 0.08; }
+}
+
+@keyframes hero-grid-wave-2 {
+  0%   { -webkit-mask-position: 100% 10%; mask-position: 100% 10%; opacity: 0.06; }
+  50%  { -webkit-mask-position: 0% 90%; mask-position: 0% 90%; opacity: 1; }
+  100% { -webkit-mask-position: 100% 10%; mask-position: 100% 10%; opacity: 0.06; }
+}
+
+.hero-inner {
+  position: relative;
+  padding-bottom: 5rem;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  margin-bottom: 2rem;
+  border-radius: 99px;
+  border: 1px solid var(--surface-border-strong);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: var(--nui-white-text-color);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.25s;
+}
+
+.hero-pill:hover {
+  border-color: var(--nui-primary-color);
+  transform: translateY(-1px);
+}
+
+.hero-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--nui-success-color);
+  box-shadow: 0 0 10px var(--nui-success-color);
+  animation: pulse-dot 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.hero-title {
+  --font-size-2xl: clamp(2.75rem, 7vw, 5rem);
+  --font-weight-semibold: 800;
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-line {
+  display: block;
+}
+
+.hero-lead {
+  --font-size-xs: clamp(1rem, 1.6vw, 1.1875rem);
+  max-width: 38rem;
+  margin-inline: auto;
+  margin-bottom: 2.25rem;
+  opacity: 0.68;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.25rem;
+}
+
+.hero-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.625rem 0.5rem 1.125rem;
+  border-radius: 99px;
+  transition: box-shadow 0.25s;
+}
+
+.hero-install:hover {
+  border-color: color-mix(in srgb, var(--nui-primary-color) 55%, transparent);
+  box-shadow: 0 0 24px var(--glow-primary);
+}
+
+.hero-install-icon {
+  color: var(--nui-primary-color);
+}
+
+.install-code {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--nui-primary-color);
+}
+</style>

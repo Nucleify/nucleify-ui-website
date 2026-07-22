@@ -1,0 +1,73 @@
+---
+import { INSTALL_COMMAND } from '../config';
+---
+
+<section class="cta-section">
+  <div class="aurora cta-aurora">
+    <div class="aurora-blob aurora-1"></div>
+    <div class="aurora-blob aurora-2"></div>
+  </div>
+  <div class="container cta-inner">
+    <nui-heading tag="2" class="cta-title">
+      Ship interfaces that <span class="gradient-text">feel expensive</span>
+    </nui-heading>
+    <nui-paragraph class="cta-lead" text="MIT licensed. Zero lock-in. Works everywhere the web works." />
+    <div class="cta-actions">
+      <nui-button label="Get Started" severity="primary" raised icon="mdi:rocket-launch" data-action="scroll" data-target="#quickstart" />
+      <nui-button label="Star on GitHub" severity="secondary" outlined icon="mdi:github" data-action="open-url" data-url="https://github.com/Nucleify/nucleify-ui" />
+    </div>
+    <code class="cta-install">{INSTALL_COMMAND}</code>
+  </div>
+</section>
+
+<style>
+
+.cta-section {
+  position: relative;
+  text-align: center;
+  padding: 8rem 0;
+  overflow: hidden;
+  border-top: 1px solid var(--surface-border);
+}
+
+.cta-aurora .aurora-1 {
+  top: auto;
+  bottom: -280px;
+  left: 18%;
+}
+
+.cta-aurora .aurora-2 {
+  top: auto;
+  bottom: -240px;
+  right: 14%;
+}
+
+.cta-inner { position: relative; }
+
+.cta-title {
+  --font-size-xl: clamp(2rem, 5vw, 3.25rem);
+  --font-weight-semibold: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.cta-lead {
+  --font-size-xs: 1.0625rem;
+  opacity: 0.62;
+  margin-bottom: 2.5rem;
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.cta-install {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  opacity: 0.45;
+}
+</style>

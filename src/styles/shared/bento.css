@@ -1,0 +1,110 @@
+nui-card.bento-cell {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  border-radius: 1.125rem;
+  overflow: hidden;
+}
+
+nui-card.bento-cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--nui-primary-color) 5%, transparent), transparent 38%);
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+nui-card.bento-cell:hover::before {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--nui-primary-color) 10%, transparent), transparent 48%);
+}
+
+nui-card.bento-cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(450px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--nui-primary-color) 14%, transparent), transparent 44%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+nui-card.bento-cell:hover::after { opacity: 0.85; }
+
+.bento-card-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.bento-cell-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1 1 auto;
+  color: var(--nui-primary-color);
+}
+
+.bento-card-title-row nui-tag {
+  --font-size-2xs: 0.6875rem;
+  flex-shrink: 0;
+}
+
+.bento-heading {
+  --font-size-md: 1.0625rem;
+  --font-weight-semibold: 650;
+}
+
+.bento-text {
+  --font-size-xs: 0.875rem;
+  opacity: 0.58;
+  max-width: 38rem;
+}
+
+.bento-cell-stage {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 0.875rem;
+  border: 1px solid color-mix(in srgb, var(--surface-border) 80%, transparent);
+  background: color-mix(in srgb, var(--nui-bg-dark-color) 42%, transparent);
+}
+
+.bento-cell-stage-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8.5rem;
+}
+
+.bento-cell-stage-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.bento-caption {
+  --font-size-xs: 0.8125rem;
+  opacity: 0.55;
+  text-align: center;
+}
+
+.bento-cell-hint {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  opacity: 0.42;
+}

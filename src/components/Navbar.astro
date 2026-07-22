@@ -1,0 +1,166 @@
+---
+import { PLAYGROUND_URL } from '../config';
+---
+
+<header class="navbar-wrap">
+  <div class="navbar glass">
+    <a href="/" class="navbar-brand">
+      <nui-logo dimensions="26" />
+      <span class="navbar-name">nucleify-ui</span>
+    </a>
+    <nav class="navbar-links">
+      <nui-anchor href={PLAYGROUND_URL} label="Demo" />
+      <nui-anchor href="#features" label="Features" />
+      <nui-anchor href="#components" label="Components" />
+      <nui-anchor href="#theming" label="Theming" />
+    </nav>
+    <div class="navbar-actions" role="group" aria-label="Theme and playground">
+      <nui-select-button class="navbar-toggle" id="navbar-palette" size="small" aria-label="Color palette" />
+      <nui-select-button class="navbar-toggle" id="navbar-mode" size="small" aria-label="Color mode" />
+      <nui-button
+        class="navbar-playground"
+        label="Playground"
+        icon="mdi:gamepad-variant-outline"
+        severity="primary"
+        size="small"
+        data-action="navigate"
+        data-url={PLAYGROUND_URL}
+      />
+    </div>
+    <nui-button id="mobile-toggle" icon="mdi:menu" label="" text rounded class="mobile-only" aria-label="Menu" data-action="toggle-mobile" />
+  </div>
+  <div class="mobile-nav glass" id="mobile-nav" hidden>
+    <nui-anchor href={PLAYGROUND_URL} label="Demo" />
+    <nui-anchor href="#features" label="Features" />
+    <nui-anchor href="#components" label="Components" />
+    <nui-anchor href="#theming" label="Theming" />
+    <nui-divider />
+    <div class="mobile-nav-theme" role="group" aria-label="Theme controls">
+      <nui-select-button class="navbar-toggle" id="mobile-palette" size="small" aria-label="Color palette" />
+      <nui-select-button class="navbar-toggle" id="mobile-mode" size="small" aria-label="Color mode" />
+    </div>
+    <nui-button
+      class="navbar-playground"
+      label="Playground"
+      icon="mdi:gamepad-variant-outline"
+      severity="primary"
+      fluid
+      data-action="navigate"
+      data-url={PLAYGROUND_URL}
+    />
+  </div>
+</header>
+
+<style>
+.navbar-wrap {
+  position: fixed;
+  top: 0.875rem;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-inline: 1rem;
+  pointer-events: none;
+}
+
+.navbar {
+  pointer-events: auto;
+  max-width: 1160px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 3.5rem;
+  padding-inline: 1.125rem 0.625rem;
+  border-radius: 99px;
+  box-shadow: 0 8px 32px color-mix(in srgb, #000 25%, transparent);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-name {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.navbar-links {
+  display: none;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+@media (min-width: 860px) {
+  .navbar-links { display: flex; }
+}
+
+.navbar-links nui-anchor {
+  --font-size-2xs: 0.875rem;
+}
+
+.navbar-actions {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+@media (min-width: 860px) {
+  .navbar-actions { display: flex; }
+}
+
+.navbar-toggle {
+  --font-size-2xs: 0.75rem;
+  --nui-primary-text-color: color-mix(in srgb, var(--nui-white-text-color) 70%, transparent);
+  --nui-card-background: transparent;
+  --nui-card-border: color-mix(in srgb, var(--nui-white-text-color) 10%, transparent);
+  --border-radius-sm: 999px;
+  --spacing-2xs: 0.3rem;
+  --spacing-sm: 0.6rem;
+}
+
+.navbar-playground {
+  --border-radius-sm: 999px;
+  --font-size-2xs: 0.75rem;
+  margin-left: 0.25rem;
+}
+
+.mobile-only {
+  display: flex;
+  margin-left: auto;
+}
+
+@media (min-width: 860px) {
+  .mobile-only { display: none; }
+}
+
+.mobile-nav {
+  pointer-events: auto;
+  max-width: 1160px;
+  margin: 0.5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 16px 48px color-mix(in srgb, #000 35%, transparent);
+}
+
+.mobile-nav[hidden] { display: none; }
+
+.mobile-nav-theme {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mobile-nav-theme .navbar-toggle {
+  flex: 1 1 auto;
+}
+</style>

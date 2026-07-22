@@ -1,0 +1,432 @@
+---
+---
+
+<section class="section section-preview" id="preview">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">// live demo</span>
+      <nui-heading tag="2" class="section-title" text="Real components. Real app." />
+      <nui-paragraph class="section-lead" text="Every pixel below is a nucleify-ui component. Flip the theme in the navbar — watch it all react." />
+    </div>
+
+    <div class="preview-shell reveal">
+      <div class="preview-scale-wrap">
+        <div class="preview-frame">
+        <div class="preview-chrome">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <div class="preview-urlbar">
+            <nui-icon icon="mdi:lock" width="11" height="11" />
+            <span>app.nucleify.dev/overview</span>
+          </div>
+          <div class="preview-chrome-right">
+            <nui-icon icon="mdi:star-outline" width="14" height="14" />
+            <nui-icon icon="mdi:dots-vertical" width="14" height="14" />
+          </div>
+        </div>
+        <div class="preview-body">
+          <aside class="preview-sidebar">
+            <div class="sidebar-logo">
+              <nui-logo use-symbol="true" dimensions="22" />
+            </div>
+            <nui-button icon="mdi:view-dashboard-outline" label="" severity="primary" rounded />
+            <nui-button icon="mdi:chart-line" label="" text rounded />
+            <nui-button icon="mdi:folder-outline" label="" text rounded />
+            <nui-button icon="mdi:account-group-outline" label="" text rounded />
+            <nui-button icon="mdi:puzzle-outline" label="" text rounded />
+            <div class="sidebar-bottom">
+              <nui-button icon="mdi:cog-outline" label="" text rounded />
+              <nui-avatar label="AK" shape="circle" />
+            </div>
+          </aside>
+          <main class="preview-main">
+            <header class="preview-topbar">
+              <div class="topbar-greeting">
+                <span class="topbar-eyebrow">OVERVIEW</span>
+                <nui-heading tag="3" text="Good evening, Alex" />
+                <nui-paragraph text="Here's what changed while you were away." class="preview-subtitle" />
+              </div>
+              <div class="topbar-actions">
+                <nui-select-button id="chart-period" size="small" />
+                <nui-button icon="mdi:bell-outline" label="" severity="secondary" outlined rounded size="small" aria-label="Notifications" />
+                <nui-button label="Export" icon="mdi:tray-arrow-down" severity="primary" size="small" />
+              </div>
+            </header>
+
+            <div class="preview-tiles">
+              <nui-tile header="Total Users" count="12,482" text-secondary="↑ 14.2% vs last month" icon="mdi:account-multiple-outline" href="#" />
+              <nui-tile header="Revenue" count="$48.2k" text-secondary="↑ 8.1% vs last month" icon="mdi:trending-up" href="#" />
+              <nui-tile header="Active Now" count="342" text-secondary="● Live right now" icon="mdi:lightning-bolt-outline" href="#" class="tile-live" />
+              <nui-tile header="Avg. Response" count="86ms" text-secondary="↓ 12ms faster" icon="mdi:speedometer" href="#" />
+            </div>
+
+            <div class="preview-charts">
+              <nui-card class="chart-card">
+                <div class="card-head">
+                  <div>
+                    <nui-heading tag="4" text="Revenue analytics" />
+                    <nui-paragraph text="Income vs expenses over time" class="card-sub" />
+                  </div>
+                  <div class="chart-legend" id="chart-legend">
+                    <span class="legend-item"><i class="legend-dot legend-a"></i>Income</span>
+                    <span class="legend-item"><i class="legend-dot legend-b"></i>Expenses</span>
+                  </div>
+                </div>
+                <nui-chart id="showcase-chart" type="line" />
+              </nui-card>
+
+              <div class="preview-side">
+                <nui-card class="meter-card">
+                  <div class="card-head">
+                    <nui-heading tag="4" text="Traffic sources" />
+                    <nui-tag value="+2.4%" severity="success" rounded />
+                  </div>
+                  <nui-meter-group id="showcase-meter" />
+                </nui-card>
+                <nui-card class="goal-card">
+                  <div class="card-head">
+                    <nui-heading tag="4" text="Q3 goal" />
+                  </div>
+                  <div class="goal-body">
+                    <nui-knob id="goal-knob" value="72" size="80" stroke-width="9" show-value value-template="{value}%" readonly />
+                    <div class="goal-info">
+                      <nui-paragraph text="$36k of $50k target" class="goal-caption" />
+                      <nui-tag value="On track" severity="info" rounded icon="mdi:flag-checkered" />
+                    </div>
+                  </div>
+                </nui-card>
+              </div>
+            </div>
+
+            <div class="preview-bottom">
+              <nui-card class="table-card">
+                <div class="card-head">
+                  <div>
+                    <nui-heading tag="4" text="Recent activity" />
+                    <nui-paragraph text="Latest events across your workspace" class="card-sub" />
+                  </div>
+                  <nui-button label="View all" icon="mdi:arrow-right" icon-pos="right" text size="small" />
+                </div>
+                <nui-data-table id="showcase-table" />
+              </nui-card>
+              <nui-card class="actions-card">
+                <div class="card-head">
+                  <nui-heading tag="4" text="Deployment" />
+                  <nui-badge value="staging" severity="warn" />
+                </div>
+                <nui-paragraph text="Build #482 · main branch" class="card-sub" />
+                <nui-progress-bar id="deploy-progress" />
+                <div class="actions-row">
+                  <nui-button label="Promote" severity="primary" size="small" fluid />
+                  <nui-button label="Logs" severity="secondary" outlined size="small" fluid />
+                </div>
+                <nui-divider />
+                <div class="deploy-meta">
+                  <div class="deploy-meta-row">
+                    <span>Region</span><strong>eu-central</strong>
+                  </div>
+                  <div class="deploy-meta-row">
+                    <span>Runtime</span><strong>edge</strong>
+                  </div>
+                  <div class="deploy-meta-row">
+                    <span>Status</span><nui-tag value="Healthy" severity="success" rounded />
+                  </div>
+                </div>
+              </nui-card>
+            </div>
+          </main>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+
+.preview-shell {
+  position: relative;
+}
+
+.preview-scale-wrap {
+  zoom: 0.78;
+}
+
+@media (min-width: 900px) {
+  .preview-scale-wrap { zoom: 0.82; }
+}
+
+@media (min-width: 1200px) {
+  .preview-scale-wrap { zoom: 0.86; }
+}
+
+.preview-frame {
+  position: relative;
+  border-radius: 1.375rem;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--surface-card), var(--surface-card)) padding-box,
+    linear-gradient(165deg,
+      color-mix(in srgb, var(--nui-primary-color) 40%, var(--surface-border)) 0%,
+      var(--surface-border) 30%,
+      var(--surface-border) 70%,
+      color-mix(in srgb, var(--nui-info-color) 30%, var(--surface-border)) 100%) border-box;
+  box-shadow: 0 40px 120px color-mix(in srgb, #000 50%, transparent);
+}
+
+.preview-chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: color-mix(in srgb, var(--nui-bg-dark-color) 55%, transparent);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.preview-urlbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-inline: auto;
+  padding: 0.3rem 1.125rem;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--nui-white-text-color) 5%, transparent);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  opacity: 0.6;
+}
+
+.preview-chrome-right {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  opacity: 0.4;
+}
+
+.preview-body {
+  display: grid;
+  min-height: 0;
+}
+
+@media (min-width: 768px) {
+  .preview-body { grid-template-columns: 3.75rem 1fr; }
+}
+
+.preview-sidebar {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.875rem 0.5rem 1rem;
+  border-right: 1px solid var(--surface-border);
+  background: color-mix(in srgb, var(--nui-bg-dark-color) 35%, transparent);
+}
+
+@media (min-width: 768px) {
+  .preview-sidebar { display: flex; }
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 0.375rem 0.75rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid var(--surface-border);
+  width: 100%;
+  justify-items: center;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.preview-main {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1.125rem 1.125rem;
+  align-content: start;
+}
+
+.preview-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.topbar-eyebrow {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  color: var(--nui-primary-color);
+  margin-bottom: 0.375rem;
+}
+
+.topbar-greeting nui-heading { --font-size-xl: 1.2rem; --font-weight-semibold: 700; }
+.preview-subtitle { --font-size-xs: 0.75rem; opacity: 0.55; }
+
+.topbar-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.topbar-actions nui-select-button { --font-size-2xs: 0.6875rem; }
+
+.preview-tiles {
+  display: grid;
+  gap: 0.625rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 900px) {
+  .preview-tiles { grid-template-columns: repeat(4, 1fr); }
+}
+
+.preview-tiles nui-tile {
+  display: block;
+  max-width: none;
+  --font-size-sm: 1.2rem;
+  --font-size-xs: 0.6875rem;
+  --font-weight-medium: 700;
+  --border-radius-sm: 0.75rem;
+}
+
+.tile-live {
+  --nui-card-border: color-mix(in srgb, var(--nui-success-color) 35%, transparent);
+}
+
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+.card-head nui-heading {
+  --font-size-md: 0.875rem;
+  --font-weight-semibold: 650;
+}
+
+.card-sub {
+  --font-size-xs: 0.6875rem;
+  opacity: 0.5;
+}
+
+.chart-card, .meter-card, .table-card, .goal-card, .actions-card {
+  display: block;
+  --border-radius-sm: 0.875rem;
+}
+
+.preview-charts {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 900px) {
+  .preview-charts { grid-template-columns: 1.65fr 1fr; }
+}
+
+.preview-side {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  opacity: 0.65;
+}
+
+.legend-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 2px;
+}
+
+.legend-a { background: var(--nui-primary-color); box-shadow: 0 0 8px var(--glow-primary); }
+.legend-b { background: var(--nui-danger-color); }
+
+#showcase-chart { display: block; min-height: 10.5rem; }
+#showcase-meter { display: block; }
+#showcase-table { display: block; }
+
+.goal-body {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.goal-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+.goal-caption {
+  --font-size-xs: 0.8125rem;
+  opacity: 0.6;
+}
+
+.preview-bottom {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 900px) {
+  .preview-bottom { grid-template-columns: 1.65fr 1fr; }
+}
+
+.actions-card .card-sub {
+  display: block;
+  margin-bottom: 0.875rem;
+}
+
+#deploy-progress {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.actions-row {
+  display: flex;
+  gap: 0.625rem;
+  margin-bottom: 0.25rem;
+}
+
+.deploy-meta {
+  display: grid;
+  gap: 0.625rem;
+  margin-top: 0.875rem;
+}
+
+.deploy-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+}
+
+.deploy-meta-row span { opacity: 0.5; }
+.deploy-meta-row strong { font-family: var(--mono); font-size: 0.75rem; font-weight: 600; }
+.deploy-meta-row nui-tag { --font-size-2xs: 0.6875rem; }
+</style>

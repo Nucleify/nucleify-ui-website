@@ -1,0 +1,31 @@
+.tok-kw { color: var(--tok-kw); }
+.tok-type { color: var(--tok-type); }
+.tok-str { color: var(--tok-str); }
+.tok-fn { color: var(--tok-fn); }
+.tok-cm { color: var(--tok-cm); opacity: var(--tok-cm-opacity); }
+
+.code-block {
+  margin: 0;
+  padding: 1.125rem 1.25rem;
+  border-radius: 0.875rem;
+  background: var(--code-surface);
+  border: 1px solid var(--code-border);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  color: var(--code-fg);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.code-block code {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.code-sm {
+  font-size: 0.75rem;
+  padding: 0.875rem 1rem;
+  color: var(--nui-primary-color);
+}

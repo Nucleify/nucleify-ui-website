@@ -1,0 +1,217 @@
+---
+---
+
+<section class="section section-alt" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">// touch the components</span>
+      <nui-heading tag="2" class="section-title" text="Don't read about it. Play with it." />
+      <nui-paragraph class="section-lead" text="Every cell below is interactive. Drag, click, and spin — these are the actual components." />
+    </div>
+
+    <div class="bento">
+      <nui-card class="bento-cell bento-cell-treeshake bento-cell-featured reveal">
+        <div slot="title" class="bento-card-title-row">
+          <div class="bento-cell-title">
+            <nui-icon icon="mdi:package-variant-closed" width="16" height="16" />
+            <nui-heading tag="4" text="Zero dead code" class="bento-heading" />
+          </div>
+          <nui-tag value="tree-shaking" severity="success" rounded />
+        </div>
+        <nui-paragraph slot="subtitle" class="bento-text" text="Each component is an independent ES module. Your bundler ships only what you import." />
+        <div class="bento-cell-stage treeshake">
+          <div class="treeshake-modules" id="treeshake-modules">
+            {Array.from({ length: 24 }).map(() => <span class="ts-module"></span>)}
+          </div>
+          <div class="treeshake-labels">
+            <span class="treeshake-active"><i></i>3 shipped</span>
+            <span class="treeshake-dead">21 eliminated at build</span>
+          </div>
+        </div>
+      </nui-card>
+
+      <nui-card class="bento-cell bento-cell-spin reveal">
+        <div slot="title" class="bento-card-title-row">
+          <div class="bento-cell-title">
+            <nui-icon icon="mdi:dialpad" width="16" height="16" />
+            <nui-heading tag="4" text="Spin it" class="bento-heading" />
+          </div>
+          <nui-tag value="nui-knob" rounded />
+        </div>
+        <div class="bento-cell-stage bento-cell-stage-center">
+          <nui-knob id="bento-knob" value="64" size="96" stroke-width="10" show-value value-template="{value}%" />
+        </div>
+        <p slot="footer" class="bento-cell-hint">Drag the arc to adjust</p>
+      </nui-card>
+
+      <nui-card class="bento-cell bento-cell-rate reveal">
+        <div slot="title" class="bento-card-title-row">
+          <div class="bento-cell-title">
+            <nui-icon icon="mdi:star-outline" width="16" height="16" />
+            <nui-heading tag="4" text="Rate it" class="bento-heading" />
+          </div>
+          <nui-tag value="nui-rating" rounded />
+        </div>
+        <div class="bento-cell-stage bento-cell-stage-center bento-cell-stage-col">
+          <nui-rating id="bento-rating" value="5" />
+          <nui-paragraph id="bento-rating-label" class="bento-caption" text="Perfect score. Obviously." />
+        </div>
+      </nui-card>
+
+      <nui-card class="bento-cell bento-cell-slide reveal">
+        <div slot="title" class="bento-card-title-row">
+          <div class="bento-cell-title">
+            <nui-icon icon="mdi:tune-vertical" width="16" height="16" />
+            <nui-heading tag="4" text="Slide it" class="bento-heading" />
+          </div>
+          <nui-tag value="nui-slider" rounded />
+        </div>
+        <div class="bento-cell-stage bento-cell-stage-col bento-slider-wrap">
+          <nui-slider id="bento-slider" value="40" />
+          <nui-progress-bar id="bento-progress" />
+        </div>
+        <p slot="footer" class="bento-cell-hint">Slide to sync the bar</p>
+      </nui-card>
+
+      <nui-card class="bento-cell bento-cell-code bento-cell-featured reveal">
+        <div slot="title" class="bento-card-title-row">
+          <div class="bento-cell-title">
+            <nui-icon icon="mdi:language-typescript" width="16" height="16" />
+            <nui-heading tag="4" text="Typed to the last event" class="bento-heading" />
+          </div>
+          <nui-tag value="TypeScript" severity="info" rounded />
+        </div>
+        <div class="bento-code-wrap">
+          <pre class="code-block code-ts"><code><span class="tok-kw">import type</span> {'{'} <span class="tok-type">NuiDialogEventMap</span> {'}'} <span class="tok-kw">from</span> <span class="tok-str">'nucleify-ui/components/nui-dialog/types'</span>;
+
+dialog.<span class="tok-fn">addEventListener</span>(<span class="tok-str">'change'</span>, (event) =&gt; {'{'}
+  event.detail.visible; <span class="tok-cm">// ✓ fully typed</span>
+{'}'});</code></pre>
+        </div>
+      </nui-card>
+    </div>
+  </div>
+</section>
+
+<style>
+
+.bento {
+  display: grid;
+  gap: 0.875rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "treeshake"
+    "spin"
+    "rate"
+    "slide"
+    "code";
+}
+
+@media (min-width: 900px) {
+  .bento {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas:
+      "treeshake treeshake treeshake treeshake spin spin"
+      "rate rate rate slide slide slide"
+      "code code code code code code";
+    gap: 1rem;
+  }
+}
+
+.bento-cell-treeshake { grid-area: treeshake; }
+.bento-cell-spin { grid-area: spin; }
+.bento-cell-rate { grid-area: rate; }
+.bento-cell-slide { grid-area: slide; }
+.bento-cell-code { grid-area: code; }
+
+.bento-slider-wrap {
+  width: 100%;
+  align-items: stretch;
+  gap: 1rem;
+  min-height: 7.5rem;
+  justify-content: center;
+}
+
+.bento-slider-wrap nui-slider,
+.bento-slider-wrap nui-progress-bar {
+  display: block;
+  width: 100%;
+}
+
+.bento-code-wrap {
+  flex: 1;
+  display: flex;
+}
+
+.bento-code-wrap .code-block {
+  width: 100%;
+  margin: 0;
+  border-color: var(--code-border);
+  background: var(--code-surface);
+  color: var(--code-fg);
+}
+
+.treeshake {
+  padding: 1.125rem;
+}
+
+.treeshake-modules {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 900px) {
+  .treeshake-modules { grid-template-columns: repeat(12, 1fr); }
+}
+
+.ts-module {
+  aspect-ratio: 1;
+  border-radius: 0.35rem;
+  border: 1px solid color-mix(in srgb, var(--nui-white-text-color) 6%, transparent);
+  background: color-mix(in srgb, var(--nui-white-text-color) 5%, transparent);
+  transition: background 0.5s, box-shadow 0.5s, border-color 0.5s, transform 0.5s;
+}
+
+.ts-module.active {
+  border-color: color-mix(in srgb, var(--nui-primary-color) 55%, transparent);
+  background: var(--nui-primary-color);
+  box-shadow: 0 0 16px var(--glow-primary);
+  transform: scale(1.06);
+}
+
+.treeshake-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+}
+
+.treeshake-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--nui-primary-color);
+  font-weight: 600;
+}
+
+.treeshake-active i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--nui-primary-color);
+  box-shadow: 0 0 8px var(--glow-primary);
+}
+
+.treeshake-dead { opacity: 0.42; }
+
+.code-ts {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+</style>

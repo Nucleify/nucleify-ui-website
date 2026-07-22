@@ -1,0 +1,113 @@
+---
+import { BROWSER_ITEMS, PLAYGROUND_URL } from '../config';
+---
+
+<section class="section section-alt" id="components">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">// the library</span>
+      <nui-heading tag="2" class="section-title" text="50+ components, one import away" />
+      <nui-paragraph class="section-lead" text="Filter by category. Click any card to open it in the playground." />
+    </div>
+    <div class="browser-categories">
+      <nui-button label="All" severity="primary" size="small" data-filter="all" />
+      <nui-button label="Data" severity="secondary" size="small" outlined data-filter="data" />
+      <nui-button label="Forms" severity="secondary" size="small" outlined data-filter="forms" />
+      <nui-button label="Layout" severity="secondary" size="small" outlined data-filter="layout" />
+      <nui-button label="Feedback" severity="secondary" size="small" outlined data-filter="feedback" />
+    </div>
+    <div class="browser-grid">
+      {BROWSER_ITEMS.map((item) => (
+        <a class="browser-item reveal" data-cat={item.cat} href={PLAYGROUND_URL}>
+          <div class="browser-item-icon">
+            <nui-icon icon={item.icon} width="20" height="20" />
+          </div>
+          <span class="browser-item-name">{item.name}</span>
+          <nui-icon icon="mdi:arrow-top-right" width="14" height="14" class="browser-item-arrow" />
+        </a>
+      ))}
+    </div>
+    <div class="components-cta">
+      <nui-button label="Open Full Playground" severity="primary" outlined icon="mdi:gamepad-variant-outline" data-action="navigate" data-url={PLAYGROUND_URL} />
+    </div>
+  </div>
+</section>
+
+<style>
+
+.browser-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+}
+
+.browser-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.625rem;
+}
+
+@media (min-width: 640px) {
+  .browser-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 920px) {
+  .browser-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.browser-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: 0.875rem;
+  border: 1px solid var(--surface-border);
+  background: var(--surface-card);
+  text-decoration: none;
+  color: var(--nui-white-text-color);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  transition: transform 0.2s;
+}
+
+.browser-item:hover {
+  border-color: var(--nui-primary-color);
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+}
+
+.browser-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, var(--nui-primary-color) 10%, transparent);
+  color: var(--nui-primary-color);
+  flex-shrink: 0;
+}
+
+.browser-item-name { flex: 1; }
+
+.browser-item-arrow {
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.browser-item:hover .browser-item-arrow {
+  opacity: 0.6;
+  transform: translate(0, 0);
+}
+
+.browser-item[hidden] { display: none; }
+
+.components-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.25rem;
+}
+</style>

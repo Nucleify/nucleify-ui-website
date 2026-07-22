@@ -1,0 +1,167 @@
+---
+import { PLAYGROUND_URL } from '../config';
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <nui-logo use-symbol="true" dimensions="28" />
+        <div>
+          <span class="footer-name">nucleify-ui</span>
+          <nui-paragraph class="footer-tag" text="The UI layer for the modern web." />
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="footer-col-title">Library</span>
+          <nui-anchor href="#components" label="Components" />
+          <nui-anchor href="#theming" label="Theming" />
+          <nui-anchor href={PLAYGROUND_URL} label="Playground" />
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Project</span>
+          <nui-anchor href="https://github.com/Nucleify/nucleify-ui" label="GitHub" target="_blank" />
+          <nui-anchor href="https://www.npmjs.com/package/nucleify-ui" label="npm" target="_blank" />
+          <nui-anchor href="https://github.com/Nucleify/Nucleify" label="Nucleify" target="_blank" />
+        </div>
+      </div>
+    </div>
+    <nui-divider />
+    <div class="footer-bottom">
+      <nui-paragraph class="footer-copy" text="MIT Licensed. Built with Lit 3 web components." />
+      <ul class="footer-badges">
+        <li class="footer-chip">
+          <nui-icon icon="mdi:lightning-bolt-outline" width="12" height="12" />
+          <span>Lit 3</span>
+        </li>
+        <li class="footer-chip">
+          <nui-icon icon="mdi:language-typescript" width="12" height="12" />
+          <span>TypeScript</span>
+        </li>
+        <li class="footer-chip">
+          <nui-icon icon="mdi:puzzle-outline" width="12" height="12" />
+          <span>Web Components</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+
+.footer {
+  border-top: 1px solid var(--surface-border);
+  padding: 3.5rem 0 2rem;
+  background: var(--surface-section);
+}
+
+.footer-inner {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.footer-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.footer-name {
+  display: block;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  margin-bottom: 0.125rem;
+}
+
+.footer-tag {
+  --font-size-xs: 0.8125rem;
+  opacity: 0.5;
+}
+
+.footer-cols {
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-col-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.45;
+  margin-bottom: 0.25rem;
+}
+
+.footer-col nui-anchor {
+  --font-size-2xs: 0.875rem;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer-copy {
+  --font-size-xs: 0.8125rem;
+  opacity: 0.5;
+}
+
+.footer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem 0.35rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--nui-white-text-color) 10%, transparent);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--nui-white-text-color) 5%, transparent),
+      color-mix(in srgb, var(--nui-bg-dark-color) 40%, transparent)
+    );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--nui-white-text-color) 6%, transparent),
+    0 1px 0 color-mix(in srgb, #000 20%, transparent);
+  color: color-mix(in srgb, var(--nui-white-text-color) 78%, transparent);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 550;
+  letter-spacing: 0.04em;
+}
+
+.footer-chip nui-icon {
+  color: var(--nui-primary-color);
+  opacity: 0.9;
+}
+
+.footer-chip span {
+  line-height: 1;
+}
+</style>

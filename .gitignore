@@ -1,0 +1,71 @@
+# build output
+dist/
+public/playground/
+# generated types
+.astro/
+
+.vscode/
+.idea/
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/public/sitemap.xml
+/storage/*.key
+.env
+.env.backup
+.env.production
+/.fleet
+/.idea
+/.vscode
+
+.data
+.output
+.nuxt
+.nuxtrc
+.nitro
+.cache
+dist
+
+build
+coverage
+
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+.stylelintcache
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.*example
+
+# AI workflow
+.ai/specs/*
+
+# Supabase
+supabase/.temp
+
+# Wrangler
+.wrangler
+
+# Next.js
+.next
+next/.next
+next/out

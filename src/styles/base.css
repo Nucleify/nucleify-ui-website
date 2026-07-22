@@ -1,0 +1,139 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--nui-white-text-color);
+  background: var(--nui-bg-dark-color);
+  -webkit-font-smoothing: antialiased;
+
+  --font-size-2xs: 0.75rem;
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.75rem;
+
+  --spacing-2xs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+
+  --border-radius-sm: 0.625rem;
+  --border-radius-md: 0.875rem;
+  --border-radius-lg: 1.25rem;
+
+  --mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --surface-border: color-mix(in srgb, var(--nui-white-text-color) 9%, transparent);
+  --surface-border-strong: color-mix(in srgb, var(--nui-white-text-color) 16%, transparent);
+  --surface-card: color-mix(in srgb, var(--nui-white-text-color) 3.5%, var(--nui-bg-dark-color));
+  --surface-hover: color-mix(in srgb, var(--nui-white-text-color) 7%, var(--nui-bg-dark-color));
+  --surface-section: color-mix(in srgb, var(--nui-white-text-color) 1.8%, var(--nui-bg-dark-color));
+  --glass-bg: color-mix(in srgb, var(--nui-bg-dark-color) 65%, transparent);
+  --glow-primary: color-mix(in srgb, var(--nui-primary-color) 14%, transparent);
+  --gradient-text: linear-gradient(
+    120deg,
+    var(--nui-primary-color) 0%,
+    var(--nui-primary-hover-color) 45%,
+    var(--nui-primary-dark-color) 100%
+  );
+
+  --code-surface: color-mix(in srgb, var(--nui-bg-dark-color) 65%, #000);
+  --code-fg: var(--nui-white-text-color);
+  --code-border: var(--surface-border);
+  --tok-kw: var(--nui-help-color);
+  --tok-type: var(--nui-info-color);
+  --tok-str: var(--nui-success-color);
+  --tok-fn: var(--nui-info-color);
+  --tok-cm: var(--nui-secondary-text-color);
+  --tok-cm-opacity: 0.55;
+}
+
+body[class*='nui-theme-light'] {
+  --code-surface: color-mix(in srgb, var(--nui-bg-dark-green-color) 82%, var(--nui-bg-dark-color));
+  --code-fg: var(--nui-white-text-color);
+  --code-border: color-mix(in srgb, var(--nui-primary-color) 18%, var(--nui-card-border));
+  --tok-kw: #6d28d9;
+  --tok-type: #075985;
+  --tok-fn: #1d4ed8;
+  --tok-cm: #64748b;
+  --tok-cm-opacity: 0.92;
+}
+
+body.nui-theme-light-nuxt {
+  --tok-str: #047857;
+}
+
+body.nui-theme-light-next {
+  --tok-str: #1d4ed8;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--nui-primary-color) 35%, transparent);
+}
+
+.container {
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--nui-primary-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid var(--surface-border);
+}
+
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.theme-instant {
+  --transition-fast: 0s;
+  --transition-medium: 0s;
+  --transition-slow: 0s;
+}
+
+body.theme-instant,
+body.theme-instant * {
+  transition-duration: 0s !important;
+  animation-duration: 0s !important;
+}

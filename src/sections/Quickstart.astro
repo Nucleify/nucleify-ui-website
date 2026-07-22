@@ -1,0 +1,208 @@
+---
+import { INSTALL_COMMAND } from '../config';
+---
+
+<section class="section" id="quickstart">
+  <div class="container">
+    <div class="qs-bento">
+      <div class="qs-head reveal">
+        <span class="section-eyebrow">// quick start</span>
+        <nui-heading tag="2" class="section-title left" text="Your terminal already knows what to do" />
+        <nui-paragraph class="section-lead left" text="Three steps to ship. The terminal is a real nui-terminal — type `help` and play." />
+      </div>
+
+      <nui-card class="bento-cell qs-cell-step qs-step-1 reveal">
+        <div slot="title" class="bento-card-title-row">
+          <div class="qs-step-label">
+            <span class="qs-num">01</span>
+            <strong>Install</strong>
+          </div>
+          <nui-tag value="npm" severity="success" rounded />
+        </div>
+        <pre class="qs-code"><code>{INSTALL_COMMAND}</code></pre>
+        <nui-button slot="footer" icon="mdi:content-copy" label="Copy" text size="small" data-action="copy-install" />
+      </nui-card>
+
+      <nui-card class="bento-cell qs-cell-step qs-step-2 reveal">
+        <div slot="title" class="bento-card-title-row">
+          <div class="qs-step-label">
+            <span class="qs-num">02</span>
+            <strong>Theme</strong>
+          </div>
+          <nui-tag value="tokens" rounded />
+        </div>
+        <pre class="qs-code"><code>applyTheme('nuxt', 'dark');</code></pre>
+        <nui-button slot="footer" icon="mdi:content-copy" label="Copy" text size="small" data-action="copy-text" data-copy="applyTheme('nuxt', 'dark');" />
+      </nui-card>
+
+      <nui-card class="bento-cell qs-cell-terminal bento-cell-featured reveal">
+        <div slot="title" class="bento-card-title-row">
+          <div class="bento-cell-title">
+            <nui-icon icon="mdi:console-line" width="16" height="16" />
+            <nui-heading tag="4" text="Try it live" class="bento-heading" />
+          </div>
+          <nui-tag value="nui-terminal" rounded />
+        </div>
+        <div class="qs-terminal-wrap">
+          <div class="terminal-glow"></div>
+          <nui-terminal
+            id="demo-terminal"
+            welcome-message="Welcome to nucleify-ui. Type 'help' to see commands."
+            prompt="dev@nucleify:~$ "
+          />
+        </div>
+        <p slot="footer" class="bento-cell-hint">Type <kbd>help</kbd> for available commands</p>
+      </nui-card>
+
+      <nui-card class="bento-cell qs-cell-step qs-step-3 reveal">
+        <div slot="title" class="bento-card-title-row">
+          <div class="qs-step-label">
+            <span class="qs-num">03</span>
+            <strong>Ship</strong>
+          </div>
+          <nui-tag value="component" severity="info" rounded />
+        </div>
+        <pre class="qs-code"><code>&lt;nui-button label="Go" severity="primary" /&gt;</code></pre>
+        <nui-button slot="footer" icon="mdi:content-copy" label="Copy" text size="small" data-action="copy-text" data-copy='<nui-button label="Go" severity="primary" />' />
+      </nui-card>
+    </div>
+  </div>
+</section>
+
+<style>
+
+.qs-bento {
+  display: grid;
+  gap: 0.875rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.qs-bento > * {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 899px) {
+  .qs-bento {
+    grid-template-areas:
+      "head"
+      "terminal"
+      "step1"
+      "step2"
+      "step3";
+  }
+
+  .qs-head { grid-area: head; }
+  .qs-step-1 { grid-area: step1; }
+  .qs-step-2 { grid-area: step2; }
+  .qs-step-3 { grid-area: step3; }
+  .qs-cell-terminal { grid-area: terminal; }
+}
+
+@media (min-width: 900px) {
+  .qs-bento {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+    grid-template-rows: auto repeat(3, auto);
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .qs-head {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .qs-step-1 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .qs-step-2 {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .qs-step-3 {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .qs-cell-terminal {
+    grid-column: 2;
+    grid-row: 2 / 5;
+  }
+}
+
+.qs-head .section-eyebrow { margin-bottom: 0.875rem; }
+.qs-head .section-title { margin-bottom: 0.75rem; }
+.qs-head .section-lead { margin-bottom: 0.25rem; max-width: 38rem; }
+
+.qs-step-label {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+.qs-step-label strong {
+  font-size: 0.9375rem;
+  font-weight: 650;
+}
+
+.qs-num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--nui-primary-color);
+}
+
+.qs-code {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--code-border);
+  background: var(--code-surface);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--code-fg);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.qs-terminal-wrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  min-height: 16rem;
+}
+
+.qs-terminal-wrap .terminal-glow {
+  position: absolute;
+  inset: -1.5rem;
+  background: radial-gradient(ellipse 70% 65% at 50% 45%, var(--glow-primary), transparent 72%);
+  pointer-events: none;
+}
+
+#demo-terminal {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  min-height: 16rem;
+  height: 100%;
+  overflow: hidden;
+  --font-size-sm: 0.8125rem;
+  --font-size-xs: 0.8125rem;
+}
+
+.qs-cell-terminal .bento-cell-hint kbd {
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.3rem;
+  border: 1px solid var(--surface-border);
+  background: color-mix(in srgb, var(--nui-bg-dark-color) 50%, transparent);
+  font-family: var(--mono);
+  font-size: 0.625rem;
+}
+</style>
