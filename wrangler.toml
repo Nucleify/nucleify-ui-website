@@ -1,4 +1,12 @@
 name = "nucleify-ui"
+main = "worker.ts"
 compatibility_date = "2026-04-06"
-account_id = "7c5285307cec0088f9f25c2388e5558e"
-pages_build_output_dir = "dist"
+
+routes = [
+  { pattern = "ui.nucleify.io/*", zone_name = "nucleify.io" },
+  { pattern = "www.ui.nucleify.io/*", zone_name = "nucleify.io" },
+]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"

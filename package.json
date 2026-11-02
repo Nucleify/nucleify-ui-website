@@ -10,7 +10,7 @@
     "build": "npm run build:playground && astro build",
     "build:playground": "node scripts/build-playground.mjs",
     "preview": "astro preview",
-    "deploy": "npm run build && wrangler pages deploy dist",
+    "deploy": "npm run build && wrangler deploy",
     "astro": "astro",
     "playground": "node scripts/build-playground.mjs --watch"
   },
