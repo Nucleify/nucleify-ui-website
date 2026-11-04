@@ -75,6 +75,8 @@ async function writeStaticAssets() {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nucleify UI – Playground</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="preload" as="style" href="/playground/nucleify-global.css" />
     <link rel="modulepreload" href="/playground/assets/index.js" />
     <link rel="stylesheet" href="/playground/nucleify-global.css" />
@@ -93,7 +95,7 @@ async function writeStaticAssets() {
       }
     </style>
   </head>
-  <body class="nui-primary-palette-nuxt nui-theme-dark-nuxt">
+  <body class="nui-preset-nucleus nui-dark">
     <playground-app></playground-app>
     <script type="module">
       await import('/playground/assets/index.js');

@@ -3,58 +3,61 @@ import { INSTALL_COMMAND } from '../config';
 ---
 
 <section class="cta-section">
-  <div class="aurora cta-aurora">
-    <div class="aurora-blob aurora-1"></div>
-    <div class="aurora-blob aurora-2"></div>
-  </div>
   <div class="container cta-inner">
+    <span class="cta-eyebrow">Ready to Deploy?</span>
     <nui-heading tag="2" class="cta-title">
-      Ship interfaces that <span class="gradient-text">feel expensive</span>
+      Build with <span class="gradient-text">effortless precision</span>
     </nui-heading>
-    <nui-paragraph class="cta-lead" text="MIT licensed. Zero lock-in. Works everywhere the web works." />
+    <nui-paragraph class="cta-lead" text="Zero runtime coupling. Complete styling freedom with native Web Components and design tokens." />
     <div class="cta-actions">
-      <nui-button label="Get Started" severity="primary" raised icon="mdi:rocket-launch" data-action="scroll" data-target="#quickstart" />
-      <nui-button label="Star on GitHub" severity="secondary" outlined icon="mdi:github" data-action="open-url" data-url="https://github.com/Nucleify/nucleify-ui" />
+      <nui-button label="Get Started Now" severity="primary" raised icon="mdi:rocket-launch" data-action="scroll" data-target="#quickstart" />
+      <nui-button label="GitHub Repository" severity="secondary" outlined icon="mdi:github" data-action="open-url" data-url="https://github.com/Nucleify/nucleify-ui" />
     </div>
-    <code class="cta-install">{INSTALL_COMMAND}</code>
+    <div class="cta-install-shell">
+      <code class="cta-install">$ {INSTALL_COMMAND}</code>
+    </div>
   </div>
 </section>
 
 <style>
-
 .cta-section {
   position: relative;
   text-align: center;
-  padding: 8rem 0;
+  padding: 6.5rem 0;
   overflow: hidden;
   border-top: 1px solid var(--surface-border);
+  background: var(--surface-section);
 }
 
-.cta-aurora .aurora-1 {
-  top: auto;
-  bottom: -280px;
-  left: 18%;
+.cta-inner {
+  position: relative;
+  max-width: 640px;
+  margin-inline: auto;
 }
 
-.cta-aurora .aurora-2 {
-  top: auto;
-  bottom: -240px;
-  right: 14%;
+.cta-eyebrow {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nui-primary-color);
+  margin-bottom: 0.75rem;
 }
-
-.cta-inner { position: relative; }
 
 .cta-title {
-  --font-size-xl: clamp(2rem, 5vw, 3.25rem);
-  --font-weight-semibold: 800;
+  --font-size-xl: clamp(2rem, 4.5vw, 3rem);
+  --font-weight-semibold: 600;
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
 }
 
 .cta-lead {
-  --font-size-xs: 1.0625rem;
-  opacity: 0.62;
-  margin-bottom: 2.5rem;
+  --font-size-xs: 1rem;
+  opacity: 0.65;
+  margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
 .cta-actions {
@@ -62,12 +65,22 @@ import { INSTALL_COMMAND } from '../config';
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.cta-install-shell {
+  display: inline-flex;
 }
 
 .cta-install {
   font-family: var(--mono);
-  font-size: 0.8125rem;
-  opacity: 0.45;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--surface-border);
+  background: color-mix(in srgb, var(--nui-bg-dark-color) 60%, transparent);
+  color: var(--nui-white-text-color);
+  opacity: 0.75;
 }
 </style>

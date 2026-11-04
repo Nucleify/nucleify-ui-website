@@ -3,45 +3,62 @@ import { STATS } from '../config';
 ---
 
 <section class="stats">
-  <div class="container stats-grid">
-    {STATS.map((stat) => (
-      <div class="stat-item reveal">
-        <nui-heading tag="3" text={stat.value} class="stat-value" />
-        <nui-paragraph text={stat.label} class="stat-label" />
-      </div>
-    ))}
+  <div class="container stats-inner">
+    <div class="stats-grid">
+      {STATS.map((stat) => (
+        <div class="stat-item reveal">
+          <span class="stat-value">{stat.value}</span>
+          <span class="stat-label">{stat.label}</span>
+        </div>
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
-
 .stats {
-  padding: 3.5rem 0;
+  padding: 2.75rem 0;
   border-block: 1px solid var(--surface-border);
+  background: color-mix(in srgb, var(--surface-section) 50%, transparent);
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: 1.5rem;
   text-align: center;
 }
 
 @media (min-width: 640px) {
-  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    divide-x: 1px solid var(--surface-border);
+  }
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .stat-value {
-  --font-size-xl: clamp(1.75rem, 3.2vw, 2.5rem);
-  --font-weight-semibold: 800;
-  color: var(--nui-primary-color);
-  letter-spacing: -0.02em;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  color: var(--nui-white-text-color);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
 .stat-label {
-  --font-size-xs: 0.8125rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.5;
+  color: var(--nui-secondary-text-color);
+  opacity: 0.65;
 }
 </style>

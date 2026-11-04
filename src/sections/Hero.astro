@@ -1,220 +1,378 @@
 ---
-import { INSTALL_COMMAND } from '../config';
+import { INSTALL_COMMAND, PLAYGROUND_URL } from "../config";
 ---
 
 <section class="hero">
-  <div class="aurora">
-    <div class="aurora-blob aurora-1"></div>
-    <div class="aurora-blob aurora-2"></div>
-    <div class="aurora-blob aurora-3"></div>
-  </div>
+  <div class="hero-subtle-glow" aria-hidden="true"></div>
   <div class="hero-grid-bg" aria-hidden="true">
     <div class="hero-grid-layer hero-grid-layer-1"></div>
     <div class="hero-grid-layer hero-grid-layer-2"></div>
   </div>
 
   <div class="container hero-inner">
-    <button class="hero-pill" data-action="open-url" data-url="https://www.npmjs.com/package/nucleify-ui">
-      <span class="hero-pill-dot"></span>
-      <span>v0.3 is out — 50+ components</span>
-      <nui-icon icon="mdi:arrow-right" width="14" height="14" />
-    </button>
-
-    <nui-heading tag="1" class="hero-title">
-      <span class="hero-line">The UI layer for</span>
-      <span class="hero-line gradient-text">the modern web</span>
-    </nui-heading>
-
-    <nui-paragraph class="hero-lead" text="Tree-shakeable Lit 3 web components with live theming and first-class TypeScript. Works with every framework — or none at all." />
-
-    <div class="hero-actions">
-      <nui-button label="Start Building" severity="primary" raised icon="mdi:arrow-right" icon-pos="right" data-action="scroll" data-target="#quickstart" />
-      <nui-button label="Explore Components" severity="secondary" outlined icon="mdi:view-grid-outline" data-action="scroll" data-target="#components" />
+    <div class="hero-badge-wrap">
+      <a
+        class="hero-pill"
+        href="https://www.npmjs.com/package/nucleify-ui"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="hero-pill-badge">v1.0</span>
+        <span class="hero-pill-text"
+          >8 Presets · Zero Bloat · Pure Web Components</span
+        >
+        <nui-icon
+          icon="mdi:arrow-right"
+          width="13"
+          height="13"
+          class="hero-pill-arrow"></nui-icon>
+      </a>
     </div>
 
-    <div class="hero-install glass">
-      <nui-icon icon="mdi:console-line" width="16" height="16" class="hero-install-icon" />
-      <code class="install-code">{INSTALL_COMMAND}</code>
-      <nui-button icon="mdi:content-copy" label="" text rounded size="small" data-action="copy-install" aria-label="Copy install command" />
+    <nui-heading tag="1" class="hero-title">
+      <span class="hero-line">Universal UI for</span>
+      <span class="hero-line gradient-text">modern web apps.</span>
+    </nui-heading>
+
+    <nui-paragraph
+      class="hero-lead"
+      text="Fast, tree-shakeable Lit 3 components with native tokens. Works with any framework - or none at all."
+    ></nui-paragraph>
+
+    <div class="hero-actions">
+      <nui-button
+        label="Explore Components"
+        severity="primary"
+        raised
+        icon="mdi:view-grid-outline"
+        data-action="scroll"
+        data-target="#components"></nui-button>
+      <nui-button
+        label="Live Playground"
+        severity="secondary"
+        outlined
+        icon="mdi:gamepad-variant-outline"
+        data-action="navigate"
+        data-url={PLAYGROUND_URL}></nui-button>
+    </div>
+
+    <div class="hero-install-shell">
+      <div class="hero-install">
+        <span class="install-prompt">$</span>
+        <code class="install-code">{INSTALL_COMMAND}</code>
+        <nui-button
+          icon="mdi:content-copy"
+          label=""
+          text
+          rounded
+          size="small"
+          data-action="copy-install"
+          aria-label="Copy install command"
+          class="copy-btn"></nui-button>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
+  .hero {
+    position: relative;
+    padding: 8.5rem 0 3.5rem;
+    text-align: center;
+    overflow: hidden;
+  }
 
-.hero {
-  position: relative;
-  padding: 10rem 0 0;
-  text-align: center;
-  overflow: hidden;
-}
+  .hero-subtle-glow {
+    position: absolute;
+    top: -140px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 640px;
+    height: 480px;
+    background: radial-gradient(
+      ellipse 65% 55% at 50% 50%,
+      color-mix(in srgb, var(--nui-primary-color) 18%, transparent),
+      transparent 70%
+    );
+    pointer-events: none;
+    filter: blur(40px);
+  }
 
-.hero-grid-bg {
-  --hero-dot: var(--nui-primary-color);
-  --hero-dot-soft: var(--nui-primary-hover-color);
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  mask-image: radial-gradient(ellipse 78% 68% at 50% 36%, #000 8%, transparent 76%);
-  -webkit-mask-image: radial-gradient(ellipse 78% 68% at 50% 36%, #000 8%, transparent 76%);
-}
+  .hero-grid-bg {
+    --hero-dot: var(--nui-primary-color);
+    --hero-dot-soft: var(--nui-primary-hover-color);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    mask-image: radial-gradient(
+      ellipse 78% 68% at 50% 36%,
+      #000 8%,
+      transparent 76%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 78% 68% at 50% 36%,
+      #000 8%,
+      transparent 76%
+    );
+  }
 
-.hero-grid-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--hero-dot) 11%, transparent) 1px,
-    transparent 1px
-  );
-  background-size: 42px 42px;
-}
+  .hero-grid-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--hero-dot) 12%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 42px 42px;
+  }
 
-.hero-grid-layer {
-  position: absolute;
-  inset: -25%;
-  background-repeat: repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  will-change: mask-position, opacity;
-}
+  .hero-grid-layer {
+    position: absolute;
+    inset: -25%;
+    background-repeat: repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    will-change: mask-position, opacity;
+  }
 
-.hero-grid-layer-1 {
-  background-image: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--hero-dot) 95%, transparent) 1.6px,
-    color-mix(in srgb, var(--hero-dot) 35%, transparent) 3.5px,
-    transparent 4px
-  );
-  background-size: 42px 42px;
-  -webkit-mask-image: linear-gradient(32deg, transparent 38%, #000 50%, transparent 62%);
-  mask-image: linear-gradient(32deg, transparent 38%, #000 50%, transparent 62%);
-  -webkit-mask-size: 240% 240%;
-  mask-size: 240% 240%;
-  animation: hero-grid-wave-1 6s ease-in-out infinite;
-}
+  .hero-grid-layer-1 {
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--hero-dot) 95%, transparent) 1.6px,
+      color-mix(in srgb, var(--hero-dot) 35%, transparent) 3.5px,
+      transparent 4px
+    );
+    background-size: 42px 42px;
+    -webkit-mask-image: linear-gradient(
+      32deg,
+      transparent 38%,
+      #000 50%,
+      transparent 62%
+    );
+    mask-image: linear-gradient(
+      32deg,
+      transparent 38%,
+      #000 50%,
+      transparent 62%
+    );
+    -webkit-mask-size: 240% 240%;
+    mask-size: 240% 240%;
+    animation: hero-grid-wave-1 6s ease-in-out infinite;
+  }
 
-.hero-grid-layer-2 {
-  background-image: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--hero-dot-soft) 88%, transparent) 1.55px,
-    color-mix(in srgb, var(--hero-dot-soft) 30%, transparent) 3.25px,
-    transparent 3.75px
-  );
-  background-size: 42px 42px;
-  background-position: 21px 11px;
-  -webkit-mask-image: linear-gradient(-52deg, transparent 37%, #000 50%, transparent 63%);
-  mask-image: linear-gradient(-52deg, transparent 37%, #000 50%, transparent 63%);
-  -webkit-mask-size: 220% 220%;
-  mask-size: 220% 220%;
-  animation: hero-grid-wave-2 9s ease-in-out infinite;
-}
+  .hero-grid-layer-2 {
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--hero-dot-soft) 88%, transparent) 1.55px,
+      color-mix(in srgb, var(--hero-dot-soft) 30%, transparent) 3.25px,
+      transparent 3.75px
+    );
+    background-size: 42px 42px;
+    background-position: 21px 11px;
+    -webkit-mask-image: linear-gradient(
+      -52deg,
+      transparent 37%,
+      #000 50%,
+      transparent 63%
+    );
+    mask-image: linear-gradient(
+      -52deg,
+      transparent 37%,
+      #000 50%,
+      transparent 63%
+    );
+    -webkit-mask-size: 220% 220%;
+    mask-size: 220% 220%;
+    animation: hero-grid-wave-2 9s ease-in-out infinite;
+  }
 
-@keyframes hero-grid-wave-1 {
-  0%   { -webkit-mask-position: 0% 20%; mask-position: 0% 20%; opacity: 0.08; }
-  50%  { -webkit-mask-position: 100% 80%; mask-position: 100% 80%; opacity: 1; }
-  100% { -webkit-mask-position: 0% 20%; mask-position: 0% 20%; opacity: 0.08; }
-}
+  @keyframes hero-grid-wave-1 {
+    0% {
+      -webkit-mask-position: 0% 20%;
+      mask-position: 0% 20%;
+      opacity: 0.08;
+    }
+    50% {
+      -webkit-mask-position: 100% 80%;
+      mask-position: 100% 80%;
+      opacity: 1;
+    }
+    100% {
+      -webkit-mask-position: 0% 20%;
+      mask-position: 0% 20%;
+      opacity: 0.08;
+    }
+  }
 
-@keyframes hero-grid-wave-2 {
-  0%   { -webkit-mask-position: 100% 10%; mask-position: 100% 10%; opacity: 0.06; }
-  50%  { -webkit-mask-position: 0% 90%; mask-position: 0% 90%; opacity: 1; }
-  100% { -webkit-mask-position: 100% 10%; mask-position: 100% 10%; opacity: 0.06; }
-}
+  @keyframes hero-grid-wave-2 {
+    0% {
+      -webkit-mask-position: 100% 10%;
+      mask-position: 100% 10%;
+      opacity: 0.06;
+    }
+    50% {
+      -webkit-mask-position: 0% 90%;
+      mask-position: 0% 90%;
+      opacity: 1;
+    }
+    100% {
+      -webkit-mask-position: 100% 10%;
+      mask-position: 100% 10%;
+      opacity: 0.06;
+    }
+  }
 
-.hero-inner {
-  position: relative;
-  padding-bottom: 5rem;
-}
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin-inline: auto;
+  }
 
-.hero-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  margin-bottom: 2rem;
-  border-radius: 99px;
-  border: 1px solid var(--surface-border-strong);
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  color: var(--nui-white-text-color);
-  font-family: inherit;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.25s;
-}
+  .hero-badge-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
 
-.hero-pill:hover {
-  border-color: var(--nui-primary-color);
-  transform: translateY(-1px);
-}
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.3rem 0.875rem 0.3rem 0.45rem;
+    border-radius: 999px;
+    border: 1px solid var(--surface-border-strong);
+    background: color-mix(in srgb, var(--nui-bg-dark-color) 70%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--nui-white-text-color);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.25);
+  }
 
-.hero-pill-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--nui-success-color);
-  box-shadow: 0 0 10px var(--nui-success-color);
-  animation: pulse-dot 2.2s ease-in-out infinite;
-}
+  .hero-pill:hover {
+    border-color: var(--nui-primary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -4px
+      color-mix(in srgb, var(--nui-primary-color) 25%, transparent);
+  }
 
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.45; }
-}
+  .hero-pill-badge {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: var(--nui-primary-color);
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
 
-.hero-title {
-  --font-size-2xl: clamp(2.75rem, 7vw, 5rem);
-  --font-weight-semibold: 800;
-  line-height: 1.03;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.5rem;
-}
+  .hero-pill-text {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    opacity: 0.9;
+  }
 
-.hero-line {
-  display: block;
-}
+  .hero-pill-arrow {
+    opacity: 0.6;
+    transition:
+      transform 0.2s,
+      opacity 0.2s;
+  }
 
-.hero-lead {
-  --font-size-xs: clamp(1rem, 1.6vw, 1.1875rem);
-  max-width: 38rem;
-  margin-inline: auto;
-  margin-bottom: 2.25rem;
-  opacity: 0.68;
-}
+  .hero-pill:hover .hero-pill-arrow {
+    opacity: 1;
+    transform: translateX(2px);
+  }
 
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2.25rem;
-}
+  .hero-title {
+    --font-size-2xl: clamp(2.75rem, 7vw, 4.75rem);
+    --font-weight-semibold: 600;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+    text-wrap: balance;
+  }
 
-.hero-install {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  padding: 0.5rem 0.625rem 0.5rem 1.125rem;
-  border-radius: 99px;
-  transition: box-shadow 0.25s;
-}
+  .hero-line {
+    display: inline;
+  }
 
-.hero-install:hover {
-  border-color: color-mix(in srgb, var(--nui-primary-color) 55%, transparent);
-  box-shadow: 0 0 24px var(--glow-primary);
-}
+  @media (min-width: 640px) {
+    .hero-line {
+      display: block;
+    }
+  }
 
-.hero-install-icon {
-  color: var(--nui-primary-color);
-}
+  .hero-lead {
+    --font-size-xs: clamp(1.0625rem, 1.6vw, 1.25rem);
+    max-width: 38rem;
+    margin-inline: auto;
+    margin-bottom: 2.25rem;
+    opacity: 0.72;
+    line-height: 1.6;
+  }
 
-.install-code {
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-  color: var(--nui-primary-color);
-}
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.875rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-install-shell {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-install {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.375rem 0.5rem 0.375rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--surface-border);
+    background: color-mix(in srgb, var(--nui-bg-dark-color) 80%, transparent);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+    transition:
+      border-color 0.25s,
+      box-shadow 0.25s;
+  }
+
+  .hero-install:hover {
+    border-color: color-mix(in srgb, var(--nui-primary-color) 45%, transparent);
+    box-shadow: 0 6px 24px -2px
+      color-mix(in srgb, var(--nui-primary-color) 16%, transparent);
+  }
+
+  .install-prompt {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--nui-primary-color);
+    opacity: 0.8;
+  }
+
+  .install-code {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--nui-white-text-color);
+    letter-spacing: 0.01em;
+  }
+
+  .copy-btn {
+    opacity: 0.7;
+  }
+
+  .copy-btn:hover {
+    opacity: 1;
+  }
 </style>

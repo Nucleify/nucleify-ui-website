@@ -11,6 +11,7 @@ function playgroundSpaPath(url) {
 }
 
 export default defineConfig({
+  site: 'https://ui.nucleify.io',
   vite: {
     plugins: [
       {

@@ -21,8 +21,11 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       nucleify-ui:
-        specifier: ^0.3.6
-        version: 0.3.7(chart.js@4.6.1)(iconify-icon@3.0.5)(lit@3.3.3)(rollup@4.67.4)(supports-color@10.2.2)
+        specifier: file:../nucleify-ui
+        version: file:../nucleify-ui(chart.js@4.6.1)(iconify-icon@3.0.5)(lit@3.3.3)(nui-rainbow@file:../nui-rainbow)(rollup@4.67.4)(supports-color@10.2.2)
+      nui-rainbow:
+        specifier: file:../nui-rainbow
+        version: file:../nui-rainbow
     devDependencies:
       esbuild:
         specifier: ^0.25.8
@@ -2138,16 +2141,22 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
-  nucleify-ui@0.3.7:
-    resolution: {integrity: sha512-MJYmbaFCORac7C+x3UMAL89ygRsYrqupvPiOp42HorOMKAVSsDrygHcJrMdjeaWqMCA542OHGI4/M9s0vb5dow==}
+  nucleify-ui@file:../nucleify-ui:
+    resolution: {directory: ../nucleify-ui, type: directory}
     hasBin: true
     peerDependencies:
       chart.js: 4.5.1
       iconify-icon: 3.0.0
       lit: 3.0.0
+      nui-rainbow: '>=0.2.0'
     peerDependenciesMeta:
       chart.js:
         optional: true
+      nui-rainbow:
+        optional: true
+
+  nui-rainbow@file:../nui-rainbow:
+    resolution: {directory: ../nui-rainbow, type: directory}
 
   obug@3.0.0:
     resolution: {integrity: sha512-5vvB5+W7ePv+p3uqxi+RcW1XAzLW0/hxt3/4X4Lc4qHudzOhmBiBwOY6DRob4WnanAEGvNcLjF+KNOufrUoEQw==}
@@ -4586,7 +4595,7 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nucleify-ui@0.3.7(chart.js@4.6.1)(iconify-icon@3.0.5)(lit@3.3.3)(rollup@4.67.4)(supports-color@10.2.2):
+  nucleify-ui@file:../nucleify-ui(chart.js@4.6.1)(iconify-icon@3.0.5)(lit@3.3.3)(nui-rainbow@file:../nui-rainbow)(rollup@4.67.4)(supports-color@10.2.2):
     dependencies:
       '@web/dev-server': 0.4.6(supports-color@10.2.2)
       '@web/dev-server-rollup': 0.6.4(supports-color@10.2.2)
@@ -4596,11 +4605,14 @@ snapshots:
       rollup-plugin-esbuild: 6.2.1(esbuild@0.28.1)(rollup@4.67.4)(supports-color@10.2.2)
     optionalDependencies:
       chart.js: 4.6.1
+      nui-rainbow: file:../nui-rainbow
     transitivePeerDependencies:
       - bufferutil
       - rollup
       - supports-color
       - utf-8-validate
+
+  nui-rainbow@file:../nui-rainbow: {}
 
   obug@3.0.0: {}
 

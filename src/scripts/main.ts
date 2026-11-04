@@ -1,6 +1,21 @@
 import type { Chart, ChartData, ChartOptions, ChartDataset } from 'chart.js';
-import { applyTheme, type Palette, type ThemeMode } from 'nucleify-ui/theme';
+import {
+  applyPreset,
+  nucleus,
+  quantum,
+  kinetic,
+  cosmos,
+  apex,
+  eclipse,
+  prism,
+  abyss,
+  registerRainbowLoader,
+  type Preset,
+  type PresetName,
+  type ThemeMode,
+} from 'nucleify-ui/themes';
 
+import 'nucleify-ui/components/nui-select';
 import 'nucleify-ui/components/nui-anchor';
 import 'nucleify-ui/components/nui-avatar';
 import 'nucleify-ui/components/nui-badge';
@@ -26,13 +41,44 @@ import 'nucleify-ui/components/nui-terminal';
 import 'nucleify-ui/components/nui-tile';
 import 'nucleify-ui/components/nui-toast';
 
-let palette: Palette = 'nuxt';
-let mode: ThemeMode = 'dark';
+registerRainbowLoader(() => import('nui-rainbow'));
 
-applyTheme(palette, mode);
+export const PRESET_MAP: Record<PresetName, Preset> = {
+  nucleus,
+  quantum,
+  kinetic,
+  cosmos,
+  apex,
+  eclipse,
+  prism,
+  abyss,
+};
+
+let currentPresetName: PresetName = 'nucleus';
+let currentMode: ThemeMode = 'dark';
+
+applyPreset(PRESET_MAP[currentPresetName], { mode: currentMode });
 
 const cardNoShadow = new CSSStyleSheet();
-cardNoShadow.replaceSync('.nui-card { box-shadow: none; }');
+cardNoShadow.replaceSync(`
+  :host {
+    height: 100%;
+  }
+  .nui-card {
+    box-shadow: none;
+    height: 100%;
+  }
+  .nui-card-body {
+    flex: 1 1 auto;
+    height: 100%;
+  }
+  .nui-card-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+`);
 
 const navbarToggleStyles = new CSSStyleSheet();
 navbarToggleStyles.replaceSync(`
@@ -60,13 +106,13 @@ navbarToggleStyles.replaceSync(`
 
   .nui-select-button-option:first-child {
     margin-left: 0;
-    border-top-left-radius: 999px;
-    border-bottom-left-radius: 999px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
   }
 
   .nui-select-button-option:last-child {
-    border-top-right-radius: 999px;
-    border-bottom-right-radius: 999px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
   .nui-select-button-option:hover:not(:disabled):not([selected]) {
@@ -94,23 +140,53 @@ navbarToggleStyles.replaceSync(`
   }
 
   :host([size="small"]) .nui-select-button-option {
-    padding: 0.38rem 0.7rem;
+    padding: 0 0.75rem;
+    height: 2rem;
+    box-sizing: border-box;
     font-size: 0.75rem;
+  }
+`);
+
+const navbarSelectStyles = new CSSStyleSheet();
+navbarSelectStyles.replaceSync(`
+  :host {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
+  .nui-select {
+    min-height: 2rem !important;
+    height: 2rem;
+    padding: 0 0.75rem !important;
+    border-radius: var(--border-radius-sm, 8px) !important;
+    font-size: 0.75rem !important;
+    font-weight: 500;
+    box-sizing: border-box;
+  }
+
+  .nui-select-panel {
+    border-radius: var(--border-radius-sm, 8px) !important;
   }
 `);
 
 const playgroundButtonStyles = new CSSStyleSheet();
 playgroundButtonStyles.replaceSync(`
   :host(.navbar-playground) {
-    --border-radius-sm: 999px;
+    --border-radius-sm: 8px;
+    display: inline-flex;
+    vertical-align: middle;
   }
 
   :host(.navbar-playground) .nui-button {
-    min-height: 2.05rem;
-    padding-inline: 0.9rem;
-    font-weight: 650;
+    min-height: 2rem !important;
+    height: 2rem;
+    border-radius: 8px !important;
+    padding: 0 0.85rem !important;
+    font-size: 0.75rem !important;
+    font-weight: 600;
     letter-spacing: 0.01em;
-    box-shadow: 0 6px 18px color-mix(in srgb, var(--nui-primary-color) 22%, transparent);
+    box-sizing: border-box;
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--nui-primary-color) 20%, transparent);
   }
 `);
 
@@ -215,6 +291,25 @@ bentoCardStyles.replaceSync(`
   }
 `);
 
+const knobTextPatch = new CSSStyleSheet();
+knobTextPatch.replaceSync(`
+  :host(#goal-knob) .nui-knob-text {
+    font-size: 0.8125rem !important;
+    font-weight: 600 !important;
+    font-family: var(--mono) !important;
+  }
+`);
+
+function patchKnob(el: Element) {
+  const root = el.shadowRoot;
+  if (!root) return;
+  const sheets = [...(root.adoptedStyleSheets ?? [])];
+  if (!sheets.includes(knobTextPatch)) {
+    sheets.push(knobTextPatch);
+    root.adoptedStyleSheets = sheets;
+  }
+}
+
 function patchCardShadow(card: Element) {
   const root = card.shadowRoot;
   if (!root?.adoptedStyleSheets?.length) return;
@@ -235,6 +330,14 @@ function patchNavbarToggle(el: Element) {
   root.adoptedStyleSheets = sheets;
 }
 
+function patchNavbarSelect(el: Element) {
+  const root = el.shadowRoot;
+  if (!root) return;
+  const sheets = [...(root.adoptedStyleSheets ?? [])];
+  if (!sheets.includes(navbarSelectStyles)) sheets.push(navbarSelectStyles);
+  root.adoptedStyleSheets = sheets;
+}
+
 function patchPlaygroundButton(el: Element) {
   const root = el.shadowRoot;
   if (!root) return;
@@ -245,9 +348,12 @@ function patchPlaygroundButton(el: Element) {
 
 function patchAllCards() {
   document.querySelectorAll('nui-card').forEach(patchCardShadow);
+  const goalKnob = document.getElementById('goal-knob');
+  if (goalKnob) patchKnob(goalKnob);
 }
 
 function patchNavbarChrome() {
+  document.querySelectorAll('nui-select.navbar-preset-select').forEach(patchNavbarSelect);
   document.querySelectorAll('nui-select-button.navbar-toggle').forEach(patchNavbarToggle);
   document.querySelectorAll('nui-button.navbar-playground').forEach(patchPlaygroundButton);
 }
@@ -274,7 +380,12 @@ customElements.whenDefined('nui-card').then(() => {
   new MutationObserver(scheduleCardPatches).observe(document.body, { childList: true, subtree: true });
 });
 
+customElements.whenDefined('nui-knob').then(() => {
+  scheduleCardPatches();
+});
+
 Promise.all([
+  customElements.whenDefined('nui-select'),
   customElements.whenDefined('nui-select-button'),
   customElements.whenDefined('nui-button'),
 ]).then(() => {
@@ -306,8 +417,38 @@ function scrollToSection(selector: string) {
   window.scrollTo({ top, behavior: 'smooth' });
 }
 
-const PALETTE_TOGGLE_IDS = ['navbar-palette', 'palette-toggle', 'mobile-palette'];
+export const PRESET_OPTIONS: Array<{ label: string; value: PresetName }> = [
+  { label: 'Nucleus', value: 'nucleus' },
+  { label: 'Quantum', value: 'quantum' },
+  { label: 'Kinetic', value: 'kinetic' },
+  { label: 'Cosmos', value: 'cosmos' },
+  { label: 'Apex', value: 'apex' },
+  { label: 'Eclipse', value: 'eclipse' },
+  { label: 'Prism', value: 'prism' },
+  { label: 'Abyss', value: 'abyss' },
+];
+
+const PRESET_SELECT_IDS = ['navbar-preset', 'palette-toggle', 'mobile-preset'];
 const MODE_TOGGLE_IDS = ['navbar-mode', 'mode-toggle', 'mobile-mode'];
+
+function setupSelect(
+  id: string,
+  options: Array<{ label: string; value: string }>,
+  getValue: () => string,
+  onChange: (v: string) => void,
+) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const sel = el as HTMLElement & {
+    options: typeof options;
+    value: string;
+  };
+  sel.options = options;
+  sel.value = getValue();
+  sel.addEventListener('nui-change', (e) => {
+    onChange((e as CustomEvent<{ value: string }>).detail.value);
+  });
+}
 
 function setupSelectButton(
   id: string,
@@ -316,7 +457,7 @@ function setupSelectButton(
   onChange: (v: string) => void,
 ) {
   const el = document.getElementById(id);
-  if (!(el instanceof HTMLElement) || !('options' in el)) return;
+  if (!el || !('options' in el)) return;
   const sb = el as HTMLElement & {
     options: typeof options;
     value: string;
@@ -333,35 +474,60 @@ function setupSelectButton(
 }
 
 function syncAllToggles() {
-  for (const id of PALETTE_TOGGLE_IDS) {
+  for (const id of PRESET_SELECT_IDS) {
     const el = document.getElementById(id);
-    if (el instanceof HTMLElement && 'value' in el) {
-      (el as HTMLElement & { value: string }).value = palette;
+    if (el && 'value' in el) {
+      (el as HTMLElement & { value: string }).value = currentPresetName;
     }
   }
   for (const id of MODE_TOGGLE_IDS) {
     const el = document.getElementById(id);
-    if (el instanceof HTMLElement && 'value' in el) {
-      (el as HTMLElement & { value: string }).value = mode;
+    if (el && 'value' in el) {
+      (el as HTMLElement & { value: string }).value = currentMode;
     }
+  }
+
+  // Update preset grid cards
+  document.querySelectorAll<HTMLElement>('.preset-card').forEach((card) => {
+    const presetAttr = card.getAttribute('data-preset');
+    if (presetAttr === currentPresetName) {
+      card.classList.add('is-active');
+    } else {
+      card.classList.remove('is-active');
+    }
+  });
+
+  const activePresetEl = document.getElementById('active-preset-name');
+  if (activePresetEl) {
+    const found = PRESET_OPTIONS.find((p) => p.value === currentPresetName);
+    activePresetEl.textContent = found ? found.label : currentPresetName;
+  }
+
+  const activeModeEl = document.getElementById('active-mode-name');
+  if (activeModeEl) {
+    activeModeEl.textContent = currentMode === 'dark' ? 'Dark' : 'Light';
   }
 }
 
 function updateThemeCode() {
   const code = document.getElementById('theme-code');
   if (code) {
-    code.innerHTML = `<span class="tok-fn">applyTheme</span>(<span class="tok-str">'${palette}'</span>, <span class="tok-str">'${mode}'</span>);`;
+    code.innerHTML = `<span class="tok-kw">import</span> { <span class="tok-fn">applyPreset</span>, <span class="tok-fn">${currentPresetName}</span> } <span class="tok-kw">from</span> <span class="tok-str">'nucleify-ui/themes'</span>;\n\n<span class="tok-fn">applyPreset</span>(${currentPresetName}, { <span class="tok-type">mode</span>: <span class="tok-str">'${currentMode}'</span> });`;
   }
 }
 
-function setTheme(p: Palette, m: ThemeMode) {
+export function setTheme(presetName: PresetName, mode: ThemeMode) {
   document.body.classList.add('theme-instant');
-  palette = p;
-  mode = m;
-  applyTheme(palette, mode);
+  currentPresetName = presetName;
+  currentMode = mode;
+
+  const targetPreset = PRESET_MAP[currentPresetName] ?? nucleus;
+  applyPreset(targetPreset, { mode: currentMode });
+
   syncAllToggles();
   updateThemeCode();
   window.dispatchEvent(new CustomEvent('nui-theme-changed'));
+
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       document.body.classList.remove('theme-instant');
@@ -369,22 +535,29 @@ function setTheme(p: Palette, m: ThemeMode) {
   });
 }
 
-const paletteOpts = [
-  { label: 'Nuxt', value: 'nuxt', icon: 'mdi:vuejs' },
-  { label: 'Next', value: 'next', icon: 'mdi:react' },
-];
 const modeOpts = [
   { label: 'Dark', value: 'dark', icon: 'mdi:weather-night' },
   { label: 'Light', value: 'light', icon: 'mdi:white-balance-sunny' },
 ];
 
-for (const id of PALETTE_TOGGLE_IDS) {
-  setupSelectButton(id, paletteOpts, () => palette, (v) => setTheme(v as Palette, mode));
+for (const id of PRESET_SELECT_IDS) {
+  setupSelect(id, PRESET_OPTIONS, () => currentPresetName, (v) => setTheme(v as PresetName, currentMode));
 }
 for (const id of MODE_TOGGLE_IDS) {
-  setupSelectButton(id, modeOpts, () => mode, (v) => setTheme(palette, v as ThemeMode));
+  setupSelectButton(id, modeOpts, () => currentMode, (v) => setTheme(currentPresetName, v as ThemeMode));
 }
 
+// Click on preset cards in Theming section
+document.querySelectorAll<HTMLElement>('.preset-card').forEach((card) => {
+  card.addEventListener('click', () => {
+    const presetAttr = card.getAttribute('data-preset') as PresetName | null;
+    if (presetAttr && PRESET_MAP[presetAttr]) {
+      setTheme(presetAttr, currentMode);
+    }
+  });
+});
+
+syncAllToggles();
 updateThemeCode();
 
 type Period = 'weekly' | 'monthly' | 'yearly';
@@ -584,7 +757,7 @@ function updateChart(period: Period, updateMode: 'default' | 'none' = 'default')
   }
 
   el.type = 'line';
-  el.height = '168px';
+  el.height = '100%';
   el.data = data;
   el.options = options;
 }
@@ -720,8 +893,8 @@ const TERMINAL_RESPONSES: Record<string, string> = {
   help: 'Available commands: install, components, theme, version, about, clear',
   install: '✓ npm install nucleify-ui lit iconify-icon\n✓ 3 packages added in 1.2s',
   components: '50+ components: nui-button, nui-chart, nui-data-table, nui-dialog, nui-terminal (this one!), and many more.',
-  theme: "applyTheme('nuxt' | 'next', 'dark' | 'light') — try the toggles in the navbar.",
-  version: 'nucleify-ui v0.3.1',
+  theme: "applyPreset(nucleus, { mode: 'dark' | 'light' }) - 8 presets: nucleus, quantum, kinetic, cosmos, apex, eclipse, prism, abyss.",
+  version: 'nucleify-ui v1.0.0',
   about: 'Tree-shakeable Lit 3 web components. MIT licensed. Built for the modern web.',
 };
 
@@ -731,7 +904,7 @@ terminal?.addEventListener('nui-command', (e) => {
   if (command === 'clear' || command === '') return;
 
   const el = terminal as HTMLElement & { writeResponse: (text: string) => void };
-  const response = TERMINAL_RESPONSES[command] ?? `command not found: ${command} — type 'help'`;
+  const response = TERMINAL_RESPONSES[command] ?? `command not found: ${command} - type 'help'`;
   el.writeResponse?.(response);
 });
 
@@ -801,7 +974,7 @@ document.addEventListener('click', async (event) => {
 
   if (action === 'copy-theme-code') {
     const code = document.getElementById('theme-code');
-    const text = code?.textContent ?? `applyTheme('${palette}', '${mode}');`;
+    const text = code?.textContent ?? `import { applyPreset, ${currentPresetName} } from 'nucleify-ui/themes';\n\napplyPreset(${currentPresetName}, { mode: '${currentMode}' });`;
     try {
       await navigator.clipboard.writeText(text);
       toast('Theme command copied');
