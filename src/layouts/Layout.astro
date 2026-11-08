@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
+import { SITE } from "../config/copy";
 
 import "nucleify-ui/styles/variables.css";
 import "../styles/fonts.css";
@@ -14,15 +15,53 @@ interface Props {
 }
 
 const {
-  title = "nucleify-ui - Universal UI for modern web apps",
-  description = "Tree-shakeable Lit 3 web components with native tokens, 8 design presets, and zero runtime bloat. Works with any framework — or none at all.",
+  title = SITE.title,
+  description = SITE.description,
   image = "/og-image.png",
-  imageAlt = "Nucleify UI - Universal Web Component Library with lit 3 and native design tokens",
+  imageAlt = SITE.imageAlt,
 } = Astro.props;
 
 const siteBase = Astro.site ?? "https://ui.nucleify.io";
 const canonicalURL = new URL(Astro.url.pathname, siteBase).href;
 const imageURL = new URL(image, siteBase).href;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "nucleify-ui",
+      url: siteBase,
+      description,
+      inLanguage: "en",
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "nucleify-ui",
+      applicationCategory: "DeveloperApplication",
+      operatingSystem: "Web",
+      description,
+      url: siteBase,
+      image: imageURL,
+      softwareVersion: "1.0",
+      license: "https://opensource.org/licenses/MIT",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      programmingLanguage: ["TypeScript", "JavaScript"],
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      name: "nucleify-ui",
+      codeRepository: "https://github.com/Nucleify/nucleify-ui",
+      programmingLanguage: "TypeScript",
+      runtimePlatform: "Lit 3",
+      license: "https://opensource.org/licenses/MIT",
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -37,6 +76,8 @@ const imageURL = new URL(image, siteBase).href;
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="nucleify-ui" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -55,8 +96,9 @@ const imageURL = new URL(image, siteBase).href;
     <meta name="twitter:image" content={imageURL} />
     <meta name="twitter:image:alt" content={imageAlt} />
 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link
       rel="preload"
       href="/fonts/Instrument_Sans-normal-400-latin.woff2"
@@ -80,8 +122,8 @@ const imageURL = new URL(image, siteBase).href;
     />
     <style is:inline>
       html {
-        background: #090a0f;
-        color: #f5f5f7;
+        background: var(--nui-bg-dark-color, #090a0f);
+        color: var(--nui-white-text-color, #f5f5f7);
       }
 
       html,
@@ -99,16 +141,14 @@ const imageURL = new URL(image, siteBase).href;
           sans-serif;
       }
 
-      body.nui-theme-dark-nuxt,
-      body.nui-theme-dark-next {
-        background: #090a0f;
-        color: #f5f5f7;
+      body.nui-dark {
+        background: var(--nui-bg-dark-color, #090a0f);
+        color: var(--nui-white-text-color, #f5f5f7);
       }
 
-      body.nui-theme-light-nuxt,
-      body.nui-theme-light-next {
-        background: #fafafc;
-        color: #0f172a;
+      body.nui-light {
+        background: var(--nui-bg-dark-color, #fafafc);
+        color: var(--nui-white-text-color, #0f172a);
       }
 
       /* Avoid layout jump before web components upgrade + adopt styles */
@@ -124,7 +164,6 @@ const imageURL = new URL(image, siteBase).href;
         visibility: visible;
       }
     </style>
-    <title>{title}</title>
   </head>
   <body class="nui-preset-nucleus nui-dark">
     <Navbar />

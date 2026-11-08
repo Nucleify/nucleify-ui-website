@@ -1,17 +1,18 @@
 ---
 import { INSTALL_COMMAND } from '../config';
+import { CTA } from '../config/copy';
 ---
 
 <section class="cta-section">
   <div class="container cta-inner">
-    <span class="cta-eyebrow">Ready to Deploy?</span>
+    <span class="cta-eyebrow">{CTA.eyebrow}</span>
     <nui-heading tag="2" class="cta-title">
-      Build with <span class="gradient-text">effortless precision</span>
+      {CTA.titleBefore}<br /><span class="gradient-text">{CTA.titleAccent}</span>
     </nui-heading>
-    <nui-paragraph class="cta-lead" text="Zero runtime coupling. Complete styling freedom with native Web Components and design tokens." />
+    <nui-paragraph class="cta-lead" text={CTA.lead} />
     <div class="cta-actions">
-      <nui-button label="Get Started Now" severity="primary" raised icon="mdi:rocket-launch" data-action="scroll" data-target="#quickstart" />
-      <nui-button label="GitHub Repository" severity="secondary" outlined icon="mdi:github" data-action="open-url" data-url="https://github.com/Nucleify/nucleify-ui" />
+      <nui-button label={CTA.ctaPrimary} severity="primary" raised icon="mdi:rocket-launch" data-action="scroll" data-target="#quickstart" />
+      <nui-button label={CTA.ctaSecondary} severity="secondary" outlined icon="mdi:github" data-action="open-url" data-url="https://github.com/Nucleify/nucleify-ui" />
     </div>
     <div class="cta-install-shell">
       <code class="cta-install">$ {INSTALL_COMMAND}</code>
@@ -31,7 +32,7 @@ import { INSTALL_COMMAND } from '../config';
 
 .cta-inner {
   position: relative;
-  max-width: 640px;
+  max-width: 46rem;
   margin-inline: auto;
 }
 
@@ -57,7 +58,8 @@ import { INSTALL_COMMAND } from '../config';
   --font-size-xs: 1rem;
   opacity: 0.65;
   margin-bottom: 2rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  text-wrap: pretty;
 }
 
 .cta-actions {
@@ -78,9 +80,9 @@ import { INSTALL_COMMAND } from '../config';
   font-weight: 600;
   padding: 0.4rem 1rem;
   border-radius: 999px;
-  border: 1px solid var(--surface-border);
-  background: color-mix(in srgb, var(--nui-bg-dark-color) 60%, transparent);
-  color: var(--nui-white-text-color);
-  opacity: 0.75;
+  border: 1px solid var(--code-border);
+  background: var(--code-surface);
+  color: var(--code-fg);
+  opacity: 0.9;
 }
 </style>

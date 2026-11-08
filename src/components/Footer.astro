@@ -1,35 +1,38 @@
 ---
-import { PLAYGROUND_URL } from '../config';
+import { DOCS_URL } from '../config';
+import { FOOTER } from '../config/copy';
 ---
 
 <footer class="footer">
   <div class="container footer-inner">
     <div class="footer-main">
       <div class="footer-brand">
-        <img src="/logo.svg" alt="Nucleify UI logo" width="24" height="24" class="footer-logo" />
+        <img src="/logo-transparent.webp" alt="Nucleify UI logo" width="24" height="24" class="site-logo footer-logo site-logo--dark" />
+        <img src="/logo-transparent-light.webp" alt="Nucleify UI logo" width="24" height="24" class="site-logo footer-logo site-logo--light" />
         <div>
           <span class="footer-name">nucleify<span class="footer-subname">/ui</span></span>
-          <nui-paragraph class="footer-tag" text="Lightweight, framework-agnostic Lit 3 web components." />
+          <nui-paragraph class="footer-tag" text={FOOTER.tagline} />
         </div>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <span class="footer-col-title">Documentation</span>
-          <nui-anchor href="#components" label="Components" />
+          <span class="footer-col-title">{FOOTER.docsTitle}</span>
+          <nui-anchor href={DOCS_URL} label="Installation" />
+          <nui-anchor href="/components" label="Components" />
+          <nui-anchor href="/resources" label="Resources" />
           <nui-anchor href="#theming" label="Design Tokens" />
-          <nui-anchor href={PLAYGROUND_URL} label="Interactive Playground" />
         </div>
         <div class="footer-col">
-          <span class="footer-col-title">Ecosystem</span>
+          <span class="footer-col-title">{FOOTER.ecoTitle}</span>
           <nui-anchor href="https://github.com/Nucleify/nucleify-ui" label="GitHub" target="_blank" />
           <nui-anchor href="https://www.npmjs.com/package/nucleify-ui" label="npm package" target="_blank" />
-          <nui-anchor href="https://nucleify.io/en/home" label="Nucleify Framework" target="_blank" />
+          <nui-anchor href={FOOTER.nucleifyUrl} label={FOOTER.nucleifyLabel} target="_blank" />
         </div>
       </div>
     </div>
     <nui-divider />
     <div class="footer-bottom">
-      <nui-paragraph class="footer-copy" text="MIT License. Built with Lit 3, TypeScript, and pure CSS tokens." />
+      <nui-paragraph class="footer-copy" text={FOOTER.legal} />
       <ul class="footer-badges">
         <li class="footer-chip">
           <nui-icon icon="mdi:lightning-bolt-outline" width="12" height="12" />

@@ -169,24 +169,46 @@ navbarSelectStyles.replaceSync(`
   }
 `);
 
-const playgroundButtonStyles = new CSSStyleSheet();
-playgroundButtonStyles.replaceSync(`
-  :host(.navbar-playground) {
-    --border-radius-sm: 8px;
+const docsButtonStyles = new CSSStyleSheet();
+docsButtonStyles.replaceSync(`
+  :host(.navbar-docs) {
+    --border-radius-sm: 1rem;
     display: inline-flex;
     vertical-align: middle;
   }
 
-  :host(.navbar-playground) .nui-button {
+  :host(.navbar-docs) .nui-button {
     min-height: 2rem !important;
     height: 2rem;
-    border-radius: 8px !important;
+    border-radius: 1rem !important;
     padding: 0 0.85rem !important;
     font-size: 0.75rem !important;
     font-weight: 600;
     letter-spacing: 0.01em;
     box-sizing: border-box;
     box-shadow: 0 4px 14px color-mix(in srgb, var(--nui-primary-color) 20%, transparent);
+  }
+`);
+
+const copyButtonStyles = new CSSStyleSheet();
+copyButtonStyles.replaceSync(`
+  :host(.copy-btn) {
+    display: inline-flex;
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+  }
+
+  :host(.copy-btn) .nui-button {
+    box-sizing: border-box;
+    width: 22px !important;
+    height: 22px !important;
+    min-height: 22px !important;
+    min-width: 22px !important;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 `);
 
@@ -197,55 +219,34 @@ bentoCardStyles.replaceSync(`
     width: 100%;
     min-width: 0;
     height: 100%;
-    border-radius: 1.125rem;
-    transition: transform 0.3s ease;
+    border-radius: var(--card-radius, 1rem);
+    transition: transform 0.22s ease;
   }
 
   :host(:hover) {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
 
   .nui-card {
-    box-shadow: none;
     height: 100%;
     overflow: hidden;
-    border-radius: 1.125rem;
-    border-color: var(--surface-border, var(--nui-card-border));
-    background: var(--surface-card, var(--nui-bg-dark-color));
+    border-radius: var(--card-radius, 1rem);
+    border-color: var(--card-border, var(--nui-card-border));
+    background: var(--card-bg, var(--nui-card-background));
+    box-shadow: var(--card-shadow, none);
+    transition: box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
   }
 
   :host(:hover) .nui-card {
-    border-color: color-mix(in srgb, var(--nui-primary-color) 44%, var(--surface-border, var(--nui-card-border)));
-    box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--nui-primary-color) 18%, transparent),
-      0 0 28px color-mix(in srgb, var(--nui-primary-color) 16%, transparent),
-      0 18px 42px color-mix(in srgb, #000 24%, transparent);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-  }
-
-  :host(.bento-cell-featured) .nui-card {
-    border: 1px solid transparent;
-    background:
-      linear-gradient(var(--surface-card, var(--nui-bg-dark-color)), var(--surface-card, var(--nui-bg-dark-color))) padding-box,
-      linear-gradient(155deg,
-        color-mix(in srgb, var(--nui-primary-color) 34%, var(--surface-border, var(--nui-card-border))) 0%,
-        var(--surface-border, var(--nui-card-border)) 45%,
-        var(--surface-border, var(--nui-card-border)) 72%,
-        color-mix(in srgb, var(--nui-info-color) 24%, var(--surface-border, var(--nui-card-border))) 100%) border-box;
-  }
-
-  :host(.bento-cell-featured:hover) .nui-card {
-    border-color: transparent;
-    box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--nui-primary-color) 22%, transparent),
-      0 0 32px color-mix(in srgb, var(--nui-primary-color) 20%, transparent),
-      0 20px 46px color-mix(in srgb, #000 26%, transparent);
+    border-color: var(--card-border-hover, var(--nui-card-border));
+    background: var(--card-bg-hover, var(--card-bg, var(--nui-card-background)));
+    box-shadow: var(--card-shadow-hover, var(--card-shadow, none));
   }
 
   .nui-card-body {
     flex: 1;
     gap: 0.875rem;
-    padding: 1.375rem;
+    padding: 1rem;
   }
 
   .nui-card-caption {
@@ -270,23 +271,33 @@ bentoCardStyles.replaceSync(`
 
   .nui-card-footer {
     border-top: none;
-    padding: 0 1.375rem 1.125rem;
+    padding: 0 var(--card-pad, 1.25rem) 1.125rem;
     background: transparent;
     justify-content: center;
   }
 
-  :host(.qs-cell-step) .nui-card-footer,
-  :host(.qs-cell-terminal) .nui-card-footer {
+  :host(.qs-cell-step) .nui-card-footer {
     justify-content: flex-start;
   }
 
-  :host(.theme-controls) .nui-card-content {
+  :host(.qs-cell-terminal) .nui-card-body {
+    gap: 0;
+  }
+
+  :host(.qs-cell-terminal) .nui-card-caption {
+    border-bottom: 1px solid var(--card-border, var(--nui-card-border));
+    margin-bottom: 0;
+  }
+
+  :host(.theme-controls) .nui-card-content,
+  :host(.theme-preview-card) .nui-card-content {
     display: flex;
     flex-direction: column;
     gap: 1.125rem;
   }
 
-  :host(.theme-controls) .nui-card-title {
+  :host(.theme-controls) .nui-card-title,
+  :host(.theme-preview-card) .nui-card-title {
     width: 100%;
   }
 `);
@@ -300,12 +311,48 @@ knobTextPatch.replaceSync(`
   }
 `);
 
+const demoTerminalStyles = new CSSStyleSheet();
+demoTerminalStyles.replaceSync(`
+  :host(#demo-terminal) {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: calc(100% + 2rem);
+    min-height: 16rem;
+    height: calc(100% + 1rem);
+    overflow: hidden;
+    margin: 0 -1rem -1rem -1rem;
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+  }
+
+  :host(#demo-terminal) .nui-terminal {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  :host(#demo-terminal) .nui-terminal-input {
+    font-size: inherit;
+  }
+`);
+
 function patchKnob(el: Element) {
   const root = el.shadowRoot;
   if (!root) return;
   const sheets = [...(root.adoptedStyleSheets ?? [])];
   if (!sheets.includes(knobTextPatch)) {
     sheets.push(knobTextPatch);
+    root.adoptedStyleSheets = sheets;
+  }
+}
+
+function patchDemoTerminal(el: Element) {
+  const root = el.shadowRoot;
+  if (!root) return;
+  const sheets = [...(root.adoptedStyleSheets ?? [])];
+  if (!sheets.includes(demoTerminalStyles)) {
+    sheets.push(demoTerminalStyles);
     root.adoptedStyleSheets = sheets;
   }
 }
@@ -338,11 +385,19 @@ function patchNavbarSelect(el: Element) {
   root.adoptedStyleSheets = sheets;
 }
 
-function patchPlaygroundButton(el: Element) {
+function patchDocsButton(el: Element) {
   const root = el.shadowRoot;
   if (!root) return;
   const sheets = [...(root.adoptedStyleSheets ?? [])];
-  if (!sheets.includes(playgroundButtonStyles)) sheets.push(playgroundButtonStyles);
+  if (!sheets.includes(docsButtonStyles)) sheets.push(docsButtonStyles);
+  root.adoptedStyleSheets = sheets;
+}
+
+function patchCopyButton(el: Element) {
+  const root = el.shadowRoot;
+  if (!root) return;
+  const sheets = [...(root.adoptedStyleSheets ?? [])];
+  if (!sheets.includes(copyButtonStyles)) sheets.push(copyButtonStyles);
   root.adoptedStyleSheets = sheets;
 }
 
@@ -350,12 +405,15 @@ function patchAllCards() {
   document.querySelectorAll('nui-card').forEach(patchCardShadow);
   const goalKnob = document.getElementById('goal-knob');
   if (goalKnob) patchKnob(goalKnob);
+  const demoTerminal = document.getElementById('demo-terminal');
+  if (demoTerminal) patchDemoTerminal(demoTerminal);
 }
 
 function patchNavbarChrome() {
   document.querySelectorAll('nui-select.navbar-preset-select').forEach(patchNavbarSelect);
   document.querySelectorAll('nui-select-button.navbar-toggle').forEach(patchNavbarToggle);
-  document.querySelectorAll('nui-button.navbar-playground').forEach(patchPlaygroundButton);
+  document.querySelectorAll('nui-button.navbar-docs').forEach(patchDocsButton);
+  document.querySelectorAll('nui-button.copy-btn').forEach(patchCopyButton);
 }
 
 function scheduleCardPatches() {
@@ -384,6 +442,11 @@ customElements.whenDefined('nui-knob').then(() => {
   scheduleCardPatches();
 });
 
+customElements.whenDefined('nui-terminal').then(() => {
+  const demoTerminal = document.getElementById('demo-terminal');
+  if (demoTerminal) patchDemoTerminal(demoTerminal);
+});
+
 Promise.all([
   customElements.whenDefined('nui-select'),
   customElements.whenDefined('nui-select-button'),
@@ -393,20 +456,84 @@ Promise.all([
   scheduleCardPatches();
 });
 
+const TOAST_OUT_MS = 200; // matches nui-toast toast-fade-out
+let toastShowToken = 0;
+
+type ToastHost = HTMLElement & {
+  messages: Array<{ id?: string; closing?: boolean }>;
+  dismiss: (id: string) => void;
+  add: (message: {
+    summary: string;
+    severity: 'success' | 'info' | 'warn' | 'error';
+    life: number;
+  }) => void;
+};
+
 function toast(summary: string, severity: 'success' | 'info' | 'warn' | 'error' = 'success') {
-  window.dispatchEvent(new CustomEvent('nui-toast-add', { detail: { summary, severity, life: 2500 } }));
+  const host = document.querySelector('nui-toast') as ToastHost | null;
+  if (!host?.add || !host.dismiss) {
+    window.dispatchEvent(new CustomEvent('nui-toast-add', { detail: { summary, severity, life: 2500 } }));
+    return;
+  }
+
+  const token = ++toastShowToken;
+  const existing = host.messages.filter((m) => m.id);
+  for (const m of existing) {
+    if (m.id && !m.closing) host.dismiss(m.id);
+  }
+
+  const show = () => {
+    if (token !== toastShowToken) return;
+    host.add({ summary, severity, life: 2500 });
+  };
+
+  if (existing.length > 0) {
+    window.setTimeout(show, TOAST_OUT_MS);
+  } else {
+    show();
+  }
 }
 
 function readToken(name: string) {
   return getComputedStyle(document.body).getPropertyValue(name).trim();
 }
 
+/**
+ * Resolve a CSS color (token name or raw value) against document.body so
+ * animated nui-rainbow custom properties are included in the cascade.
+ */
+function resolveCssColor(valueOrVar: string) {
+  const raw = valueOrVar.trim();
+  if (!raw) return raw;
+  if (raw.startsWith('#') || /^rgba?\(/i.test(raw)) return raw;
+
+  const probe = document.createElement('span');
+  probe.style.cssText =
+    'position:absolute;visibility:hidden;pointer-events:none;color:transparent';
+  // Prefer var(--token) so @property-animated hues resolve on body.
+  probe.style.color = raw.startsWith('--') ? `var(${raw})` : raw;
+  document.body.appendChild(probe);
+  const resolved = getComputedStyle(probe).color;
+  probe.remove();
+  return resolved && resolved !== 'rgba(0, 0, 0, 0)' && resolved !== 'transparent'
+    ? resolved
+    : raw;
+}
+
+function readLivePrimaryColor() {
+  if (document.body.classList.contains('nui-rainbow')) {
+    const live = resolveCssColor('--nui-rainbow-color');
+    if (live.startsWith('rgb')) return live;
+  }
+  return resolveCssColor('--nui-primary-color');
+}
+
 function getColors() {
   return [
-    readToken('--nui-primary-color'),
-    readToken('--nui-info-color'),
-    readToken('--nui-help-color'),
-    readToken('--nui-success-color'),
+    readLivePrimaryColor(),
+    resolveCssColor('--nui-info-color'),
+    resolveCssColor('--nui-help-color'),
+    resolveCssColor('--nui-success-color'),
   ];
 }
 
@@ -507,6 +634,9 @@ function syncAllToggles() {
   if (activeModeEl) {
     activeModeEl.textContent = currentMode === 'dark' ? 'Dark' : 'Light';
   }
+
+  document.body.classList.toggle('nui-light', currentMode === 'light');
+  document.body.classList.toggle('nui-dark', currentMode === 'dark');
 }
 
 function updateThemeCode() {
@@ -584,7 +714,7 @@ const CHART_DATA: Record<Period, number[][]> = {
 };
 
 function colorWithAlpha(color: string, alpha: number) {
-  const value = color.trim();
+  const value = resolveCssColor(color).trim();
   if (!value) return `rgba(239, 68, 68, ${alpha})`;
 
   if (value.startsWith('#')) {
@@ -596,7 +726,7 @@ function colorWithAlpha(color: string, alpha: number) {
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }
 
-  const rgb = value.match(/^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)/);
+  const rgb = value.match(/^rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/);
   if (rgb) return `rgba(${rgb[1]}, ${rgb[2]}, ${rgb[3]}, ${alpha})`;
 
   return value;
@@ -778,6 +908,72 @@ if (chartPeriod instanceof HTMLElement && 'options' in chartPeriod) {
 
 updateChart('monthly');
 
+let rainbowChartRaf = 0;
+let lastRainbowPrimary = '';
+let lastRainbowSyncAt = 0;
+
+function getActiveChartPeriod(): Period {
+  const cp = document.getElementById('chart-period');
+  if (cp instanceof HTMLElement && 'value' in cp) {
+    return String((cp as HTMLElement & { value: string }).value) as Period;
+  }
+  return 'monthly';
+}
+
+function stopRainbowChartSync() {
+  if (rainbowChartRaf) cancelAnimationFrame(rainbowChartRaf);
+  rainbowChartRaf = 0;
+  lastRainbowPrimary = '';
+  lastRainbowSyncAt = 0;
+}
+
+function syncRainbowChartColors(ts = performance.now()) {
+  // Keep polling while Prism is active — nui-rainbow class is applied async.
+  if (currentPresetName !== 'prism') {
+    stopRainbowChartSync();
+    return;
+  }
+
+  if (document.body.classList.contains('nui-rainbow') && ts - lastRainbowSyncAt >= 80) {
+    lastRainbowSyncAt = ts;
+    const primary = readLivePrimaryColor();
+    if (primary && primary !== lastRainbowPrimary) {
+      lastRainbowPrimary = primary;
+      // Patch Income series colors in-place (dataset order: Expenses, Income).
+      patchShowcaseChartPrimary(primary);
+      updateMeters();
+    }
+  }
+
+  rainbowChartRaf = requestAnimationFrame(syncRainbowChartColors);
+}
+
+function patchShowcaseChartPrimary(primary: string) {
+  const chartEl = document.getElementById('showcase-chart');
+  if (!(chartEl instanceof HTMLElement) || !('getChart' in chartEl)) return;
+  const chart = (chartEl as ShowcaseChartEl).getChart?.();
+  if (!chart?.data?.datasets?.length) {
+    updateChart(getActiveChartPeriod(), 'none');
+    return;
+  }
+
+  // Income is the second series (see buildChart).
+  const income = chart.data.datasets[1] ?? chart.data.datasets[0];
+  if (!income) return;
+
+  income.borderColor = primary;
+  income.pointHoverBackgroundColor = primary;
+  income.backgroundColor = areaGradient(primary, 0.28) as never;
+  chart.update('none');
+}
+
+function startRainbowChartSync() {
+  stopRainbowChartSync();
+  if (currentPresetName === 'prism') {
+    rainbowChartRaf = requestAnimationFrame(syncRainbowChartColors);
+  }
+}
+
 function updateMeters() {
   const colors = getColors();
 
@@ -908,25 +1104,44 @@ terminal?.addEventListener('nui-command', (e) => {
   el.writeResponse?.(response);
 });
 
+const MOBILE_BROWSER_LIMIT = 8;
+const mobileBrowserMq = window.matchMedia('(max-width: 499px)');
+let currentBrowserFilter = 'all';
+
+function applyBrowserFilter(filter = currentBrowserFilter) {
+  currentBrowserFilter = filter;
+  const limitMobile = mobileBrowserMq.matches;
+  let shown = 0;
+
+  document.querySelectorAll<HTMLElement>('.browser-categories nui-button').forEach((b) => {
+    if (b.getAttribute('data-filter') === filter) {
+      b.setAttribute('severity', 'primary');
+      b.removeAttribute('outlined');
+    } else {
+      b.setAttribute('severity', 'secondary');
+      b.setAttribute('outlined', '');
+    }
+  });
+
+  document.querySelectorAll<HTMLElement>('.browser-item').forEach((item) => {
+    const matches = filter === 'all' || item.getAttribute('data-cat') === filter;
+    if (!matches || (limitMobile && shown >= MOBILE_BROWSER_LIMIT)) {
+      item.hidden = true;
+      return;
+    }
+    item.hidden = false;
+    shown += 1;
+  });
+}
+
 document.querySelectorAll<HTMLElement>('.browser-categories nui-button').forEach((btn) => {
   btn.addEventListener('click', () => {
-    const filter = btn.getAttribute('data-filter') ?? 'all';
-
-    document.querySelectorAll<HTMLElement>('.browser-categories nui-button').forEach((b) => {
-      if (b.getAttribute('data-filter') === filter) {
-        b.setAttribute('severity', 'primary');
-        b.removeAttribute('outlined');
-      } else {
-        b.setAttribute('severity', 'secondary');
-        b.setAttribute('outlined', '');
-      }
-    });
-
-    document.querySelectorAll<HTMLElement>('.browser-item').forEach((item) => {
-      item.hidden = filter !== 'all' && item.getAttribute('data-cat') !== filter;
-    });
+    applyBrowserFilter(btn.getAttribute('data-filter') ?? 'all');
   });
 });
+
+applyBrowserFilter();
+mobileBrowserMq.addEventListener('change', () => applyBrowserFilter());
 
 document.addEventListener('click', async (event) => {
   const path = event.composedPath();
@@ -983,6 +1198,24 @@ document.addEventListener('click', async (event) => {
     }
   }
 
+  if (action === 'copy-preview-code') {
+    const text = `<nui-card class="dashboard-card">
+  <div slot="header">
+    <nui-select-button .options=\${['7D', '30D', '90D']}></nui-select-button>
+  </div>
+  <nui-chart type="line" .data=\${chartData}></nui-chart>
+  <div slot="footer">
+    <nui-button label="Export Data" icon="mdi:download" size="small"></nui-button>
+  </div>
+</nui-card>`;
+    try {
+      await navigator.clipboard.writeText(text);
+      toast('Demo code copied to clipboard');
+    } catch {
+      toast('Copy failed', 'error');
+    }
+  }
+
   if (action === 'toggle-mobile') {
     const nav = document.getElementById('mobile-nav');
     if (nav) nav.hidden = !nav.hidden;
@@ -1006,14 +1239,13 @@ document.addEventListener('click', (event) => {
 });
 
 window.addEventListener('nui-theme-changed', () => {
-  const cp = document.getElementById('chart-period');
-  const period = cp instanceof HTMLElement && 'value' in cp
-    ? (String((cp as HTMLElement & { value: string }).value) as Period)
-    : 'monthly';
-  updateChart(period, 'none');
+  updateChart(getActiveChartPeriod(), 'none');
   updateMeters();
   scheduleCardPatches();
+  startRainbowChartSync();
 });
+
+startRainbowChartSync();
 
 document.querySelector('.preview-tiles')?.addEventListener('click', (e) => e.preventDefault(), true);
 
@@ -1030,11 +1262,3 @@ const revealObserver = new IntersectionObserver(
 );
 
 document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
-
-document.querySelectorAll<HTMLElement>('.bento-cell, .theme-preview').forEach((cell) => {
-  cell.addEventListener('pointermove', (e) => {
-    const rect = cell.getBoundingClientRect();
-    cell.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-    cell.style.setProperty('--my', `${e.clientY - rect.top}px`);
-  });
-});

@@ -1,11 +1,12 @@
 ---
-import { PLAYGROUND_URL } from '../config';
+import { DOCS_URL } from '../config';
 ---
 
 <header class="navbar-wrap">
   <div class="navbar glass">
     <a href="/" class="navbar-brand">
-      <img src="/logo.svg" alt="Nucleify UI logo" width="22" height="22" class="navbar-logo" />
+      <img src="/logo-transparent.webp" alt="Nucleify UI logo" width="22" height="22" class="site-logo navbar-logo site-logo--dark" />
+      <img src="/logo-transparent-light.webp" alt="Nucleify UI logo" width="22" height="22" class="site-logo navbar-logo site-logo--light" />
       <span class="navbar-name">nucleify<span class="navbar-subname">/ui</span></span>
     </a>
     <nav class="navbar-links">
@@ -13,20 +14,20 @@ import { PLAYGROUND_URL } from '../config';
       <nui-anchor href="#features" label="Features" />
       <nui-anchor href="#components" label="Components" />
       <nui-anchor href="#theming" label="Theming" />
-      <nui-anchor href="#quickstart" label="Docs" />
+      <nui-anchor href="#quickstart" label="Get Started" />
     </nav>
-    <div class="navbar-actions" role="group" aria-label="Theme and playground">
+    <div class="navbar-actions" role="group" aria-label="Theme and docs">
       <nui-select class="navbar-preset-select" id="navbar-preset" size="small" aria-label="Theme preset"></nui-select>
       <nui-select-button class="navbar-toggle" id="navbar-mode" size="small" aria-label="Color mode" />
       <nui-button
-        class="navbar-playground"
-        label="Playground"
+        class="navbar-docs"
+        label="Docs"
         icon="mdi:arrow-top-right"
         icon-pos="right"
         severity="primary"
         size="small"
         data-action="navigate"
-        data-url={PLAYGROUND_URL}
+        data-url={DOCS_URL}
       />
     </div>
     <nui-button id="mobile-toggle" icon="mdi:menu" label="" text rounded class="mobile-only" aria-label="Menu" data-action="toggle-mobile" />
@@ -36,21 +37,21 @@ import { PLAYGROUND_URL } from '../config';
     <nui-anchor href="#features" label="Features" />
     <nui-anchor href="#components" label="Components" />
     <nui-anchor href="#theming" label="Theming" />
-    <nui-anchor href="#quickstart" label="Docs" />
+    <nui-anchor href="#quickstart" label="Get Started" />
     <nui-divider />
     <div class="mobile-nav-theme" role="group" aria-label="Theme controls">
       <nui-select class="navbar-preset-select" id="mobile-preset" size="small" fluid aria-label="Theme preset"></nui-select>
       <nui-select-button class="navbar-toggle" id="mobile-mode" size="small" aria-label="Color mode" />
     </div>
     <nui-button
-      class="navbar-playground"
-      label="Open Playground"
+      class="navbar-docs"
+      label="Open Docs"
       icon="mdi:arrow-top-right"
       icon-pos="right"
       severity="primary"
       fluid
       data-action="navigate"
-      data-url={PLAYGROUND_URL}
+      data-url={DOCS_URL}
     />
   </div>
 </header>
@@ -111,6 +112,7 @@ import { PLAYGROUND_URL } from '../config';
   display: none;
   align-items: center;
   gap: 1.5rem;
+  line-height: 1;
 }
 
 @media (min-width: 860px) {
@@ -152,8 +154,8 @@ import { PLAYGROUND_URL } from '../config';
   --border-radius-sm: 8px;
 }
 
-.navbar-playground {
-  --border-radius-sm: 8px;
+.navbar-docs {
+  --border-radius-sm: 1rem;
   --font-size-2xs: 0.75rem;
   margin-left: 0.25rem;
 }

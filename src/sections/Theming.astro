@@ -1,23 +1,26 @@
 ---
+import { THEMING } from '../config/copy';
 ---
 
 <section class="section" id="theming">
   <div class="container">
     <div class="section-header">
-      <span class="section-eyebrow">Design System Tokens</span>
-      <nui-heading tag="2" class="section-title" text="8 Handcrafted Design Presets" />
-      <nui-paragraph class="section-lead" text="Zero CSS framework dependencies. Presets compile directly to CSS Custom Properties cascading through shadow DOM boundaries." />
+      <span class="section-eyebrow">{THEMING.eyebrow}</span>
+      <nui-heading tag="2" class="section-title">
+        {THEMING.titleLine1}<br />{THEMING.titleLine2}
+      </nui-heading>
+      <nui-paragraph class="section-lead" text={THEMING.lead} />
     </div>
 
     <!-- 8 Presets Interactive Carousel / Grid -->
     <div class="preset-selector-grid" role="radiogroup" aria-label="Theme presets">
-      <button type="button" class="preset-card is-active" data-preset="nucleus">
+      <button type="button" class="site-card preset-card is-active" data-preset="nucleus">
         <div class="preset-card-top">
           <span class="preset-dot" style="--dot-color: #6366f1;"></span>
           <strong>Nucleus</strong>
           <span class="preset-tag">Enterprise</span>
         </div>
-        <p class="preset-desc">Balanced indigo & slate design system for enterprise dashboards.</p>
+        <p class="preset-desc">Balanced indigo & slate system for enterprise dashboards.</p>
         <div class="preset-palette-row">
           <span style="background: #6366f1;"></span>
           <span style="background: #4f46e5;"></span>
@@ -26,13 +29,13 @@
         </div>
       </button>
 
-      <button type="button" class="preset-card" data-preset="quantum">
+      <button type="button" class="site-card preset-card" data-preset="quantum">
         <div class="preset-card-top">
           <span class="preset-dot" style="--dot-color: #10b981;"></span>
           <strong>Quantum</strong>
           <span class="preset-tag">Cybernetic</span>
         </div>
-        <p class="preset-desc">Emerald & zinc glassmorphic bento theme with luminous glow.</p>
+        <p class="preset-desc">Emerald & zinc glassmorphic bento theme.</p>
         <div class="preset-palette-row">
           <span style="background: #10b981;"></span>
           <span style="background: #059669;"></span>
@@ -41,13 +44,13 @@
         </div>
       </button>
 
-      <button type="button" class="preset-card" data-preset="kinetic">
+      <button type="button" class="site-card preset-card" data-preset="kinetic">
         <div class="preset-card-top">
           <span class="preset-dot" style="--dot-color: #f59e0b;"></span>
           <strong>Kinetic</strong>
           <span class="preset-tag">Terminal</span>
         </div>
-        <p class="preset-desc">Amber & true-black high-density technical developer UI.</p>
+        <p class="preset-desc">Amber & true-black high-density technical UI.</p>
         <div class="preset-palette-row">
           <span style="background: #f59e0b;"></span>
           <span style="background: #d97706;"></span>
@@ -56,13 +59,13 @@
         </div>
       </button>
 
-      <button type="button" class="preset-card" data-preset="cosmos">
+      <button type="button" class="site-card preset-card" data-preset="cosmos">
         <div class="preset-card-top">
           <span class="preset-dot" style="--dot-color: #a855f7;"></span>
           <strong>Cosmos</strong>
           <span class="preset-tag">Cyberpunk</span>
         </div>
-        <p class="preset-desc">Electric violet & cyan luminescence with deep neon vibe.</p>
+        <p class="preset-desc">Electric violet & cyan luminescence.</p>
         <div class="preset-palette-row">
           <span style="background: #a855f7;"></span>
           <span style="background: #9333ea;"></span>
@@ -71,13 +74,13 @@
         </div>
       </button>
 
-      <button type="button" class="preset-card" data-preset="apex">
+      <button type="button" class="site-card preset-card" data-preset="apex">
         <div class="preset-card-top">
           <span class="preset-dot" style="--dot-color: #f43f5e;"></span>
           <strong>Apex</strong>
           <span class="preset-tag">Crimson Noir</span>
         </div>
-        <p class="preset-desc">Deep ruby & rose editorial luxury styling for premium apps.</p>
+        <p class="preset-desc">Deep ruby & rose editorial luxury styling.</p>
         <div class="preset-palette-row">
           <span style="background: #f43f5e;"></span>
           <span style="background: #e11d48;"></span>
@@ -86,13 +89,13 @@
         </div>
       </button>
 
-      <button type="button" class="preset-card" data-preset="eclipse">
+      <button type="button" class="site-card preset-card" data-preset="eclipse">
         <div class="preset-card-top">
           <span class="preset-dot" style="--dot-color: #ffffff;"></span>
           <strong>Eclipse</strong>
           <span class="preset-tag">Monochrome</span>
         </div>
-        <p class="preset-desc">Pure achromatic black & white contrast with high focus.</p>
+        <p class="preset-desc">Pure achromatic black & white contrast.</p>
         <div class="preset-palette-row">
           <span style="background: #ffffff;"></span>
           <span style="background: #a3a3a3;"></span>
@@ -101,13 +104,13 @@
         </div>
       </button>
 
-      <button type="button" class="preset-card" data-preset="prism">
+      <button type="button" class="site-card preset-card" data-preset="prism">
         <div class="preset-card-top">
           <span class="preset-dot preset-dot-rainbow"></span>
           <strong>Prism</strong>
           <span class="preset-tag">Chromatic</span>
         </div>
-        <p class="preset-desc">Dynamic full-spectrum chromatic rainbow powered by nui-rainbow.</p>
+        <p class="preset-desc">Full-spectrum rainbow powered by nui-rainbow.</p>
         <div class="preset-palette-row preset-palette-rainbow">
           <span style="background: #ef4444;"></span>
           <span style="background: #f59e0b;"></span>
@@ -116,13 +119,13 @@
         </div>
       </button>
 
-      <button type="button" class="preset-card" data-preset="abyss">
+      <button type="button" class="site-card preset-card" data-preset="abyss">
         <div class="preset-card-top">
           <span class="preset-dot" style="--dot-color: #06b6d4;"></span>
           <strong>Abyss</strong>
           <span class="preset-tag">Marine Depth</span>
         </div>
-        <p class="preset-desc">Hydrodynamic oceanic cyan with bioluminescent highlights.</p>
+        <p class="preset-desc">Oceanic cyan with bioluminescent highlights.</p>
         <div class="preset-palette-row">
           <span style="background: #06b6d4;"></span>
           <span style="background: #0891b2;"></span>
@@ -176,23 +179,23 @@
             <span class="dot yellow"></span>
             <span class="dot green"></span>
             <span class="theme-terminal-title">theme.ts</span>
-            <nui-button icon="mdi:content-copy" label="" text rounded size="small" data-action="copy-theme-code" aria-label="Copy theme command" />
+            <nui-button class="copy-btn" icon="mdi:content-copy" label="" text rounded size="small" data-action="copy-theme-code" aria-label="Copy theme command" />
           </div>
           <pre class="theme-terminal-body"><code id="theme-code"></code></pre>
         </div>
       </nui-card>
 
-      <div class="theme-preview">
-        <div class="theme-preview-head">
+      <nui-card class="bento-cell theme-preview-card">
+        <div slot="title" class="theme-preview-head">
           <div>
-            <span class="theme-preview-eyebrow">Real-time Shadow DOM Cascade</span>
-            <nui-heading tag="4" text="Synchronous Element Styling" class="theme-preview-title" />
+            <span class="theme-preview-eyebrow">{THEMING.previewEyebrow}</span>
+            <nui-heading tag="4" text={THEMING.previewTitle} class="theme-preview-title" />
           </div>
           <nui-avatar label="UI" shape="circle" size="small" />
         </div>
 
         <div class="theme-preview-grid">
-          <section class="theme-zone">
+          <section class="theme-zone site-card-inset">
             <header class="theme-zone-head">
               <nui-icon icon="mdi:gesture-tap-button" width="13" height="13" />
               <span>Button Variants</span>
@@ -206,7 +209,7 @@
             </div>
           </section>
 
-          <section class="theme-zone">
+          <section class="theme-zone site-card-inset">
             <header class="theme-zone-head">
               <nui-icon icon="mdi:tag-outline" width="13" height="13" />
               <span>Badges & Indicators</span>
@@ -219,7 +222,7 @@
             </div>
           </section>
 
-          <section class="theme-zone theme-zone-wide">
+          <section class="theme-zone theme-zone-wide site-card-inset">
             <header class="theme-zone-head">
               <nui-icon icon="mdi:chart-donut" width="13" height="13" />
               <span>Progress & Meter Group</span>
@@ -230,7 +233,7 @@
             </div>
           </section>
         </div>
-      </div>
+      </nui-card>
     </div>
   </div>
 </section>
@@ -245,34 +248,13 @@
 }
 
 .preset-card {
-  display: flex;
-  flex-direction: column;
   gap: 0.5rem;
   padding: 1rem 1.125rem;
-  border-radius: 0.875rem;
-  border: 1px solid var(--surface-border);
-  background: var(--surface-card);
-  color: var(--nui-white-text-color);
+  width: 100%;
   text-align: left;
   cursor: pointer;
   font: inherit;
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.25);
   position: relative;
-}
-
-.preset-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--surface-border-strong);
-  background: var(--surface-hover);
-}
-
-.preset-card.is-active {
-  border-color: var(--nui-primary-color);
-  background: color-mix(in srgb, var(--nui-primary-color) 10%, var(--surface-card));
-  box-shadow:
-    0 0 0 1px var(--nui-primary-color),
-    0 8px 24px -4px color-mix(in srgb, var(--nui-primary-color) 25%, transparent);
 }
 
 .preset-card-top {
@@ -288,17 +270,16 @@
 }
 
 .preset-dot {
-  width: 0.55rem;
-  height: 0.55rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
   background: var(--dot-color, var(--nui-primary-color));
-  box-shadow: 0 0 8px var(--dot-color, var(--nui-primary-color));
   flex-shrink: 0;
+  opacity: 0.9;
 }
 
 .preset-dot-rainbow {
   background: linear-gradient(135deg, #ef4444, #f59e0b, #10b981, #3b82f6, #a855f7);
-  box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
 }
 
 .preset-tag {
@@ -315,8 +296,8 @@
 }
 
 .preset-card.is-active .preset-tag {
-  background: color-mix(in srgb, var(--nui-primary-color) 20%, transparent);
-  color: var(--nui-primary-color);
+  background: color-mix(in srgb, var(--nui-primary-color) 12%, transparent);
+  color: color-mix(in srgb, var(--nui-primary-color) 75%, var(--nui-secondary-text-color));
 }
 
 .preset-desc {
@@ -342,9 +323,8 @@
 /* ── Live Showcase Bento ── */
 .theme-showcase {
   display: grid;
-  gap: 1.25rem;
-  max-width: 68rem;
-  margin-inline: auto;
+  gap: 1rem;
+  width: 100%;
 }
 
 @media (min-width: 900px) {
@@ -372,9 +352,9 @@
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 0.625rem;
-  background: color-mix(in srgb, var(--nui-primary-color) 12%, transparent);
-  color: var(--nui-primary-color);
+  border-radius: var(--card-inset-radius);
+  background: color-mix(in srgb, var(--nui-primary-color) 8%, transparent);
+  color: color-mix(in srgb, var(--nui-primary-color) 75%, var(--nui-secondary-text-color));
   flex-shrink: 0;
 }
 
@@ -421,9 +401,6 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.75rem 0.875rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--surface-border);
-  background: color-mix(in srgb, var(--nui-bg-dark-color) 45%, transparent);
 }
 
 .theme-toggle-top {
@@ -452,9 +429,6 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.5rem 0.35rem;
-  border-radius: 0.625rem;
-  border: 1px solid var(--surface-border);
-  background: color-mix(in srgb, var(--nui-bg-dark-color) 35%, transparent);
   font-family: var(--mono);
   font-size: 0.625rem;
   letter-spacing: 0.04em;
@@ -468,12 +442,18 @@
   height: 1.125rem;
   border-radius: 50%;
   background: var(--swatch);
-  box-shadow: 0 0 10px color-mix(in srgb, var(--swatch) 40%, transparent);
+}
+
+.theme-toggle-card,
+.theme-swatch {
+  border-radius: var(--card-inset-radius);
+  border: 1px solid var(--card-inset-border);
+  background: var(--card-inset-bg);
 }
 
 .theme-terminal {
   margin-top: auto;
-  border-radius: 0.75rem;
+  border-radius: var(--card-inset-radius);
   overflow: hidden;
   border: 1px solid var(--code-border);
   background: var(--code-surface);
@@ -485,7 +465,7 @@
   gap: 0.4rem;
   padding: 0.4rem 0.625rem;
   border-bottom: 1px solid var(--surface-border);
-  background: color-mix(in srgb, var(--code-surface) 90%, var(--nui-primary-color) 10%);
+  background: color-mix(in srgb, var(--code-surface) 96%, var(--nui-primary-color) 4%);
 }
 
 .theme-terminal-title {
@@ -508,16 +488,10 @@
 .theme-terminal-body .tok-fn { color: var(--tok-fn); }
 .theme-terminal-body .tok-str { color: var(--tok-str); }
 
-.theme-preview {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1.25rem;
-  border-radius: 1.125rem;
-  border: 1px solid var(--surface-border-strong);
-  background: var(--surface-card);
-  overflow: hidden;
+.theme-preview-card {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
 }
 
 .theme-preview-head {
@@ -525,6 +499,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  width: 100%;
 }
 
 .theme-preview-eyebrow {
@@ -553,9 +528,6 @@
   display: flex;
   flex-direction: column;
   padding: 0.875rem 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--surface-border);
-  background: color-mix(in srgb, var(--nui-bg-dark-color) 35%, transparent);
 }
 
 .theme-zone-wide {

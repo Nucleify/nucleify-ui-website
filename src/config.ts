@@ -1,9 +1,12 @@
-export const PLAYGROUND_URL = '/playground/';
+import { componentDocsUrl, DOCS_ENTRY_URL } from './config/docs-routes';
+
+/** Default entry into the docs SPA. */
+export const DOCS_URL = DOCS_ENTRY_URL;
 
 export const INSTALL_COMMAND = 'npm install nucleify-ui lit iconify-icon';
 
 export const STATS = [
-  { value: '50+', label: 'Components' },
+  { value: '50+', label: 'Web Components' },
   { value: '4', label: 'Dependencies' },
   { value: '100%', label: 'TypeScript' },
   { value: '<8kb', label: 'Per component' },
@@ -19,7 +22,7 @@ export const BROWSER_ITEMS = [
   { name: 'nui-select', icon: 'mdi:form-select', cat: 'forms' },
   { name: 'nui-meter-group', icon: 'mdi:gauge', cat: 'data' },
   { name: 'nui-accordion', icon: 'mdi:view-sequential', cat: 'layout' },
-  { name: 'nui-tile', icon: 'mdi:view-grid-outline', cat: 'data' },
+  { name: 'nui-color-picker', icon: 'mdi:palette-outline', cat: 'forms' },
   { name: 'nui-toast', icon: 'mdi:bell-ring-outline', cat: 'feedback' },
   { name: 'nui-date-picker', icon: 'mdi:calendar', cat: 'forms' },
   { name: 'nui-tree', icon: 'mdi:file-tree', cat: 'data' },
@@ -27,3 +30,5 @@ export const BROWSER_ITEMS = [
   { name: 'nui-knob', icon: 'mdi:knob', cat: 'forms' },
   { name: 'nui-terminal', icon: 'mdi:console', cat: 'feedback' },
 ] as const;
+
+export { componentDocsUrl, DOCS_ENTRY_URL };

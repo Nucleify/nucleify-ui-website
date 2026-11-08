@@ -1,6 +1,6 @@
 # build output
 dist/
-public/playground/
+public/docs/
 # generated types
 .astro/
 

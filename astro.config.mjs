@@ -1,28 +1,34 @@
+import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
+import { DOCS_SITEMAP_PATHS, isDocsSpaPath } from './src/config/docs-routes.ts';
 
-function playgroundPath(url) {
-  const path = url.split('?')[0];
-  return path === '/playground' || path === '/playground/';
-}
+const SITE = 'https://ui.nucleify.io';
 
-function playgroundSpaPath(url) {
-  const path = url.split('?')[0];
-  return path.startsWith('/playground/') && !path.includes('.');
+function stripQuery(url) {
+  return url.split('?')[0];
 }
 
 export default defineConfig({
-  site: 'https://ui.nucleify.io',
+  site: SITE,
+  integrations: [
+    sitemap({
+      customPages: DOCS_SITEMAP_PATHS.map((path) => `${SITE}${path}`),
+    }),
+  ],
   vite: {
     plugins: [
       {
-        name: 'playground-static',
+        name: 'docs-spa-fallback',
         configureServer(server) {
           server.middlewares.use((req, _res, next) => {
             const url = req.url ?? '';
-            if (playgroundPath(url) || (playgroundSpaPath(url) && url !== '/playground/index.html')) {
-              const query = url.includes('?') ? url.slice(url.indexOf('?')) : '';
-              req.url = `/playground/index.html${query}`;
+            const path = stripQuery(url);
+            const query = url.includes('?') ? url.slice(url.indexOf('?')) : '';
+
+            if (isDocsSpaPath(path)) {
+              req.url = `/docs/index.html${query}`;
             }
+
             next();
           });
         },

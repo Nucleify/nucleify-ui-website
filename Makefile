@@ -11,7 +11,7 @@ PNPM := pnpm -s
 
 .PHONY: help \
 	setup install \
-	dev build preview playground playground-build \
+	dev build preview docs docs-build \
 	deploy
 
 # ── help ─────────────────────────────────────────────────────────────────────
@@ -24,11 +24,11 @@ help:
 	@echo "  make install               Same as make setup"
 	@echo ""
 	@echo "App"
-	@echo "  make dev                   Start dev server (build:playground + astro dev)"
+	@echo "  make dev                   Start dev server (build:docs + astro dev)"
 	@echo "  make build                 Build production bundle"
 	@echo "  make preview               Preview production build locally"
-	@echo "  make playground            Watch and rebuild playground"
-	@echo "  make playground-build      Build playground bundle"
+	@echo "  make docs                  Watch and rebuild docs SPA"
+	@echo "  make docs-build            Build docs SPA bundle"
 	@echo ""
 	@echo "Ops / Deploy"
 	@echo "  make deploy                Production build + Wrangler deploy"
@@ -51,11 +51,11 @@ build:
 preview:
 	pnpm preview
 
-playground:
-	pnpm playground
+docs:
+	pnpm docs
 
-playground-build:
-	pnpm run build:playground
+docs-build:
+	pnpm run build:docs
 
 # ── ops ──────────────────────────────────────────────────────────────────────
 

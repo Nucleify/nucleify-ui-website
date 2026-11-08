@@ -1,13 +1,16 @@
 ---
-import { BROWSER_ITEMS, PLAYGROUND_URL } from '../config';
+import { BROWSER_ITEMS, componentDocsUrl } from '../config';
+import { COMPONENTS } from '../config/copy';
+
+const COMPONENTS_INDEX_URL = '/components';
 ---
 
 <section class="section section-alt" id="components">
   <div class="container">
     <div class="section-header">
-      <span class="section-eyebrow">Component Catalog</span>
-      <nui-heading tag="2" class="section-title" text="50+ Production-Ready Primitives" />
-      <nui-paragraph class="section-lead" text="Filter components by domain. Click any component card to immediately test attributes and live slots inside the playground." />
+      <span class="section-eyebrow">{COMPONENTS.eyebrow}</span>
+      <nui-heading tag="2" class="section-title" text={COMPONENTS.title} />
+      <nui-paragraph class="section-lead" text={COMPONENTS.lead} />
     </div>
 
     <div class="browser-categories">
@@ -20,7 +23,11 @@ import { BROWSER_ITEMS, PLAYGROUND_URL } from '../config';
 
     <div class="browser-grid">
       {BROWSER_ITEMS.map((item) => (
-        <a class="browser-item reveal" data-cat={item.cat} href={PLAYGROUND_URL}>
+        <a
+          class:list={['site-card', 'browser-item', 'reveal', item.name === 'nui-terminal' && 'browser-item--terminal']}
+          data-cat={item.cat}
+          href={componentDocsUrl(item.name)}
+        >
           <div class="browser-item-icon">
             <nui-icon icon={item.icon} width="18" height="18" />
           </div>
@@ -31,7 +38,7 @@ import { BROWSER_ITEMS, PLAYGROUND_URL } from '../config';
     </div>
 
     <div class="components-cta">
-      <nui-button label="Launch Interactive Playground" severity="primary" outlined icon="mdi:gamepad-variant-outline" data-action="navigate" data-url={PLAYGROUND_URL} />
+      <nui-button label={COMPONENTS.cta} severity="primary" outlined icon="mdi:book-open-page-variant-outline" data-action="navigate" data-url={COMPONENTS_INDEX_URL} />
     </div>
   </div>
 </section>
@@ -47,39 +54,46 @@ import { BROWSER_ITEMS, PLAYGROUND_URL } from '../config';
 
 .browser-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 0.75rem;
+  justify-items: center;
+}
+
+.browser-item {
+  width: 100%;
+  max-width: 250px;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+@media (min-width: 500px) {
+  .browser-grid {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: stretch;
+  }
+
+  .browser-item {
+    max-width: none;
+  }
 }
 
 @media (min-width: 640px) {
   .browser-grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* 16 items → 1 leftover in 3-col; hide terminal until 4-col */
+  .browser-item--terminal { display: none; }
 }
 
 @media (min-width: 960px) {
   .browser-grid { grid-template-columns: repeat(4, 1fr); }
-}
-
-.browser-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.875rem 1rem;
-  border-radius: 0.875rem;
-  border: 1px solid var(--surface-border);
-  background: var(--surface-card);
-  text-decoration: none;
-  color: var(--nui-white-text-color);
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.browser-item:hover {
-  border-color: var(--nui-primary-color);
-  background: var(--surface-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px -4px color-mix(in srgb, var(--nui-primary-color) 20%, transparent);
+  .browser-item--terminal { display: flex; }
 }
 
 .browser-item-icon {
@@ -88,9 +102,9 @@ import { BROWSER_ITEMS, PLAYGROUND_URL } from '../config';
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  border-radius: 0.625rem;
-  background: color-mix(in srgb, var(--nui-primary-color) 10%, transparent);
-  color: var(--nui-primary-color);
+  border-radius: var(--card-inset-radius);
+  background: color-mix(in srgb, var(--nui-primary-color) 8%, transparent);
+  color: color-mix(in srgb, var(--nui-primary-color) 80%, var(--nui-secondary-text-color));
   flex-shrink: 0;
 }
 
@@ -105,7 +119,7 @@ import { BROWSER_ITEMS, PLAYGROUND_URL } from '../config';
   opacity: 0;
   transform: translate(-3px, 3px);
   transition: opacity 0.2s, transform 0.2s;
-  color: var(--nui-primary-color);
+  color: var(--nui-secondary-text-color);
 }
 
 .browser-item:hover .browser-item-arrow {

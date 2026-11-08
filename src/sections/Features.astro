@@ -1,24 +1,25 @@
 ---
+import { FEATURES } from '../config/copy';
 ---
 
 <section class="section section-alt" id="features">
   <div class="container">
     <div class="section-header">
-      <span class="section-eyebrow">Interactive Features</span>
-      <nui-heading tag="2" class="section-title" text="Engineered for performance" />
-      <nui-paragraph class="section-lead" text="Every widget is an actual live Web Component reacting directly to your inputs with zero intermediary virtual DOM overhead." />
+      <span class="section-eyebrow">{FEATURES.eyebrow}</span>
+      <nui-heading tag="2" class="section-title" text={FEATURES.title} />
+      <nui-paragraph class="section-lead" text={FEATURES.lead} />
     </div>
 
     <div class="bento">
-      <nui-card class="bento-cell bento-cell-treeshake bento-cell-featured reveal">
+      <nui-card class="bento-cell bento-cell-treeshake reveal">
         <div slot="title" class="bento-card-title-row">
           <div class="bento-cell-title">
             <nui-icon icon="mdi:package-variant-closed" width="16" height="16" />
-            <nui-heading tag="4" text="Zero Dead Code" class="bento-heading" />
+            <nui-heading tag="4" text={FEATURES.zeroDeadTitle} class="bento-heading" />
           </div>
-          <nui-tag value="Tree-Shakeable" severity="success" rounded />
+          <nui-tag value={FEATURES.zeroDeadTag} severity="success" rounded />
         </div>
-        <nui-paragraph slot="subtitle" class="bento-text" text="Independent ES modules ensure your bundler ships strictly what your templates consume." />
+        <nui-paragraph slot="subtitle" class="bento-text" text={FEATURES.zeroDead} />
         <div class="bento-cell-stage treeshake">
           <div class="treeshake-modules" id="treeshake-modules">
             {Array.from({ length: 24 }).map(() => <span class="ts-module"></span>)}
@@ -34,27 +35,27 @@
         <div slot="title" class="bento-card-title-row">
           <div class="bento-cell-title">
             <nui-icon icon="mdi:dialpad" width="16" height="16" />
-            <nui-heading tag="4" text="Precise Inputs" class="bento-heading" />
+            <nui-heading tag="4" text={FEATURES.preciseTitle} class="bento-heading" />
           </div>
           <nui-tag value="nui-knob" rounded />
         </div>
         <div class="bento-cell-stage bento-cell-stage-center">
           <nui-knob id="bento-knob" value="64" size="92" stroke-width="8" show-value value-template="{value}%" />
         </div>
-        <p slot="footer" class="bento-cell-hint">Drag circumference to tune</p>
+        <p slot="footer" class="bento-cell-hint">{FEATURES.preciseHint}</p>
       </nui-card>
 
       <nui-card class="bento-cell bento-cell-rate reveal">
         <div slot="title" class="bento-card-title-row">
           <div class="bento-cell-title">
             <nui-icon icon="mdi:star-outline" width="16" height="16" />
-            <nui-heading tag="4" text="State Synchronized" class="bento-heading" />
+            <nui-heading tag="4" text={FEATURES.syncTitle} class="bento-heading" />
           </div>
           <nui-tag value="nui-rating" rounded />
         </div>
         <div class="bento-cell-stage bento-cell-stage-center bento-cell-stage-col">
           <nui-rating id="bento-rating" value="5" />
-          <nui-paragraph id="bento-rating-label" class="bento-caption" text="Full 5-star rating verified." />
+          <nui-paragraph id="bento-rating-label" class="bento-caption" text={FEATURES.syncCaption} />
         </div>
       </nui-card>
 
@@ -62,7 +63,7 @@
         <div slot="title" class="bento-card-title-row">
           <div class="bento-cell-title">
             <nui-icon icon="mdi:tune-vertical" width="16" height="16" />
-            <nui-heading tag="4" text="Smooth Reactive Sliders" class="bento-heading" />
+            <nui-heading tag="4" text={FEATURES.sliderTitle} class="bento-heading" />
           </div>
           <nui-tag value="nui-slider" rounded />
         </div>
@@ -70,14 +71,14 @@
           <nui-slider id="bento-slider" value="40" />
           <nui-progress-bar id="bento-progress" />
         </div>
-        <p slot="footer" class="bento-cell-hint">Slide to sync progress indicator</p>
+        <p slot="footer" class="bento-cell-hint">{FEATURES.sliderHint}</p>
       </nui-card>
 
-      <nui-card class="bento-cell bento-cell-code bento-cell-featured reveal">
+      <nui-card class="bento-cell bento-cell-code reveal">
         <div slot="title" class="bento-card-title-row">
           <div class="bento-cell-title">
             <nui-icon icon="mdi:language-typescript" width="16" height="16" />
-            <nui-heading tag="4" text="Strict Type Definitions" class="bento-heading" />
+            <nui-heading tag="4" text={FEATURES.typedTitle} class="bento-heading" />
           </div>
           <nui-tag value="TypeScript" severity="info" rounded />
         </div>
@@ -145,7 +146,7 @@ dialog.<span class="tok-fn">addEventListener</span>(<span class="tok-str">'chang
 .bento-code-wrap .code-block {
   width: 100%;
   margin: 0;
-  border-radius: 0.75rem;
+  border-radius: var(--card-inset-radius);
   border-color: var(--code-border);
   background: var(--code-surface);
   color: var(--code-fg);

@@ -1,5 +1,6 @@
 ---
-import { INSTALL_COMMAND, PLAYGROUND_URL } from "../config";
+import { DOCS_URL, INSTALL_COMMAND } from "../config";
+import { HERO } from "../config/copy";
 ---
 
 <section class="hero">
@@ -18,9 +19,7 @@ import { INSTALL_COMMAND, PLAYGROUND_URL } from "../config";
         rel="noopener"
       >
         <span class="hero-pill-badge">v1.0</span>
-        <span class="hero-pill-text"
-          >8 Presets · Zero Bloat · Pure Web Components</span
-        >
+        <span class="hero-pill-text">{HERO.badge.replace(/^v1\.0 · /, "")}</span>
         <nui-icon
           icon="mdi:arrow-right"
           width="13"
@@ -30,30 +29,30 @@ import { INSTALL_COMMAND, PLAYGROUND_URL } from "../config";
     </div>
 
     <nui-heading tag="1" class="hero-title">
-      <span class="hero-line">Universal UI for</span>
-      <span class="hero-line gradient-text">modern web apps.</span>
+      <span class="hero-line">{HERO.titleLine1}</span>
+      <span class="hero-line gradient-text">{HERO.titleLine2}</span>
     </nui-heading>
 
     <nui-paragraph
       class="hero-lead"
-      text="Fast, tree-shakeable Lit 3 components with native tokens. Works with any framework - or none at all."
+      text={HERO.lead}
     ></nui-paragraph>
 
     <div class="hero-actions">
       <nui-button
-        label="Explore Components"
+        label={HERO.ctaPrimary}
         severity="primary"
         raised
-        icon="mdi:view-grid-outline"
+        icon="mdi:rocket-launch"
         data-action="scroll"
-        data-target="#components"></nui-button>
+        data-target="#quickstart"></nui-button>
       <nui-button
-        label="Live Playground"
+        label={HERO.ctaSecondary}
         severity="secondary"
         outlined
         icon="mdi:gamepad-variant-outline"
         data-action="navigate"
-        data-url={PLAYGROUND_URL}></nui-button>
+        data-url={DOCS_URL}></nui-button>
     </div>
 
     <div class="hero-install-shell">
@@ -292,22 +291,16 @@ import { INSTALL_COMMAND, PLAYGROUND_URL } from "../config";
   }
 
   .hero-title {
-    --font-size-2xl: clamp(2.75rem, 7vw, 4.75rem);
+    --font-size-2xl: clamp(1.75rem, 6.2vw, 4rem);
     --font-weight-semibold: 600;
     line-height: 1.08;
     letter-spacing: -0.04em;
     margin-bottom: 1.5rem;
-    text-wrap: balance;
   }
 
   .hero-line {
-    display: inline;
-  }
-
-  @media (min-width: 640px) {
-    .hero-line {
-      display: block;
-    }
+    display: block;
+    white-space: nowrap;
   }
 
   .hero-lead {
@@ -338,9 +331,9 @@ import { INSTALL_COMMAND, PLAYGROUND_URL } from "../config";
     gap: 0.75rem;
     padding: 0.375rem 0.5rem 0.375rem 1rem;
     border-radius: 999px;
-    border: 1px solid var(--surface-border);
-    background: color-mix(in srgb, var(--nui-bg-dark-color) 80%, transparent);
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--code-border);
+    background: var(--code-surface);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.12);
     transition:
       border-color 0.25s,
       box-shadow 0.25s;
@@ -364,10 +357,11 @@ import { INSTALL_COMMAND, PLAYGROUND_URL } from "../config";
     font-family: var(--mono);
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--nui-white-text-color);
+    color: var(--code-fg);
     letter-spacing: 0.01em;
   }
 
+  /* Host-only; inner .nui-button size is patched in main.ts (shadow DOM) */
   .copy-btn {
     opacity: 0.7;
   }

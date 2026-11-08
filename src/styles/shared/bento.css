@@ -4,38 +4,13 @@ nui-card.bento-cell {
   width: 100%;
   min-width: 0;
   height: 100%;
-  border-radius: 1.125rem;
+  border-radius: var(--card-radius);
   overflow: hidden;
+  /* Align nui-card tokens with shared site card surface */
+  --nui-card-border-radius: var(--card-radius);
+  --nui-card-border: var(--card-border);
+  --nui-card-background: var(--card-bg);
 }
-
-nui-card.bento-cell::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--nui-primary-color) 5%, transparent), transparent 38%);
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-
-nui-card.bento-cell:hover::before {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--nui-primary-color) 10%, transparent), transparent 48%);
-}
-
-nui-card.bento-cell::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: inherit;
-  background: radial-gradient(450px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--nui-primary-color) 14%, transparent), transparent 44%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-nui-card.bento-cell:hover::after { opacity: 0.85; }
 
 .bento-card-title-row {
   display: flex;
@@ -52,7 +27,7 @@ nui-card.bento-cell:hover::after { opacity: 0.85; }
   gap: 0.5rem;
   min-width: 0;
   flex: 1 1 auto;
-  color: var(--nui-primary-color);
+  color: color-mix(in srgb, var(--nui-primary-color) 70%, var(--nui-secondary-text-color));
 }
 
 .bento-card-title-row nui-tag {
@@ -74,9 +49,9 @@ nui-card.bento-cell:hover::after { opacity: 0.85; }
 .bento-cell-stage {
   flex: 1;
   padding: 1rem;
-  border-radius: 0.875rem;
-  border: 1px solid color-mix(in srgb, var(--surface-border) 80%, transparent);
-  background: color-mix(in srgb, var(--nui-bg-dark-color) 42%, transparent);
+  border-radius: var(--card-inset-radius);
+  border: 1px solid var(--card-inset-border);
+  background: var(--card-inset-bg);
 }
 
 .bento-cell-stage-center {

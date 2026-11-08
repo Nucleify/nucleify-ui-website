@@ -1,0 +1,38 @@
+/* Shared site card surface — used by nui-card.bento-cell, preset tiles, browser items, theme preview */
+
+.site-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-radius: var(--card-radius);
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  color: var(--nui-white-text-color);
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease,
+    transform 0.22s ease;
+}
+
+.site-card:hover,
+a.site-card:hover,
+button.site-card:hover {
+  border-color: var(--card-border-hover);
+  background: var(--card-bg-hover);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.site-card.is-active {
+  border-color: color-mix(in srgb, var(--nui-primary-color) 45%, var(--card-border));
+  background: color-mix(in srgb, var(--nui-primary-color) 5%, var(--card-bg));
+  box-shadow: var(--card-shadow-hover);
+}
+
+.site-card-inset {
+  border-radius: var(--card-inset-radius);
+  border: 1px solid var(--card-inset-border);
+  background: var(--card-inset-bg);
+}

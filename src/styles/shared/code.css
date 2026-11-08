@@ -7,7 +7,7 @@
 .code-block {
   margin: 0;
   padding: 1.125rem 1.25rem;
-  border-radius: 0.875rem;
+  border-radius: var(--card-inset-radius);
   background: var(--code-surface);
   border: 1px solid var(--code-border);
   font-family: var(--mono);

@@ -1,45 +1,46 @@
 ---
 import { INSTALL_COMMAND } from '../config';
+import { QUICKSTART } from '../config/copy';
 ---
 
 <section class="section" id="quickstart">
   <div class="container">
     <div class="qs-bento">
       <div class="qs-head reveal">
-        <span class="section-eyebrow">Integration Flow</span>
-        <nui-heading tag="2" class="section-title left" text="Zero-friction developer experience" />
-        <nui-paragraph class="section-lead left" text="Follow three immediate steps or interact directly with the embedded terminal below. Type help to see supported commands." />
+        <span class="section-eyebrow">{QUICKSTART.eyebrow}</span>
+        <nui-heading tag="2" class="section-title left" text={QUICKSTART.title} />
+        <nui-paragraph class="section-lead left" text={QUICKSTART.lead} />
       </div>
 
       <nui-card class="bento-cell qs-cell-step qs-step-1 reveal">
         <div slot="title" class="bento-card-title-row">
           <div class="qs-step-label">
             <span class="qs-num">01</span>
-            <strong>Install Package</strong>
+            <strong>{QUICKSTART.step1}</strong>
           </div>
           <nui-tag value="npm" severity="success" rounded />
         </div>
         <pre class="qs-code"><code>{INSTALL_COMMAND}</code></pre>
-        <nui-button slot="footer" icon="mdi:content-copy" label="Copy Command" text size="small" data-action="copy-install" />
+        <nui-button slot="footer" icon="mdi:content-copy" label={QUICKSTART.step1Cta} text size="small" data-action="copy-install" />
       </nui-card>
 
       <nui-card class="bento-cell qs-cell-step qs-step-2 reveal">
         <div slot="title" class="bento-card-title-row">
           <div class="qs-step-label">
             <span class="qs-num">02</span>
-            <strong>Apply Design Preset</strong>
+            <strong>{QUICKSTART.step2}</strong>
           </div>
           <nui-tag value="tokens" rounded />
         </div>
         <pre class="qs-code"><code>{"import { applyPreset, nucleus } from 'nucleify-ui/themes';\n\napplyPreset(nucleus, { mode: 'dark' });"}</code></pre>
-        <nui-button slot="footer" icon="mdi:content-copy" label="Copy Code" text size="small" data-action="copy-text" data-copy="import { applyPreset, nucleus } from 'nucleify-ui/themes';\n\napplyPreset(nucleus, { mode: 'dark' });" />
+        <nui-button slot="footer" icon="mdi:content-copy" label={QUICKSTART.step2Cta} text size="small" data-action="copy-text" data-copy="import { applyPreset, nucleus } from 'nucleify-ui/themes';\n\napplyPreset(nucleus, { mode: 'dark' });" />
       </nui-card>
 
-      <nui-card class="bento-cell qs-cell-terminal bento-cell-featured reveal">
+      <nui-card class="bento-cell qs-cell-terminal reveal">
         <div slot="title" class="bento-card-title-row">
           <div class="bento-cell-title">
             <nui-icon icon="mdi:console-line" width="16" height="16" />
-            <nui-heading tag="4" text="Interactive Sandbox Shell" class="bento-heading" />
+            <nui-heading tag="4" text={QUICKSTART.terminalTitle} class="bento-heading" />
           </div>
           <nui-tag value="nui-terminal" rounded />
         </div>
@@ -47,23 +48,22 @@ import { INSTALL_COMMAND } from '../config';
           <div class="terminal-glow"></div>
           <nui-terminal
             id="demo-terminal"
-            welcome-message="Welcome to nucleify-ui. Type 'help' to see commands."
+            welcome-message={QUICKSTART.terminalWelcome}
             prompt="dev@nucleify:~$ "
           />
         </div>
-        <p slot="footer" class="bento-cell-hint">Type <kbd>help</kbd> or <kbd>components</kbd></p>
       </nui-card>
 
       <nui-card class="bento-cell qs-cell-step qs-step-3 reveal">
         <div slot="title" class="bento-card-title-row">
           <div class="qs-step-label">
             <span class="qs-num">03</span>
-            <strong>Render in Any Framework</strong>
+            <strong>{QUICKSTART.step3}</strong>
           </div>
           <nui-tag value="Lit 3" severity="info" rounded />
         </div>
         <pre class="qs-code"><code>&lt;nui-button label="Launch" severity="primary" /&gt;</code></pre>
-        <nui-button slot="footer" icon="mdi:content-copy" label="Copy Snippet" text size="small" data-action="copy-text" data-copy='<nui-button label="Launch" severity="primary" />' />
+        <nui-button slot="footer" icon="mdi:content-copy" label={QUICKSTART.step3Cta} text size="small" data-action="copy-text" data-copy='<nui-button label="Launch" severity="primary" />' />
       </nui-card>
     </div>
   </div>
@@ -159,7 +159,7 @@ import { INSTALL_COMMAND } from '../config';
 .qs-code {
   margin: 0;
   padding: 0.875rem 1rem;
-  border-radius: 0.75rem;
+  border-radius: var(--card-inset-radius);
   border: 1px solid var(--code-border);
   background: var(--code-surface);
   font-family: var(--mono);
@@ -185,26 +185,4 @@ import { INSTALL_COMMAND } from '../config';
   pointer-events: none;
 }
 
-#demo-terminal {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  min-height: 16rem;
-  height: 100%;
-  overflow: hidden;
-  --font-size-sm: 0.8125rem;
-  --font-size-xs: 0.8125rem;
-  font-family: var(--mono);
-}
-
-.qs-cell-terminal .bento-cell-hint kbd {
-  padding: 0.15rem 0.4rem;
-  border-radius: 0.35rem;
-  border: 1px solid var(--surface-border-strong);
-  background: color-mix(in srgb, var(--nui-bg-dark-color) 60%, transparent);
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  font-weight: 600;
-}
 </style>

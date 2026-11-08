@@ -6,15 +6,16 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "npm run build:playground && astro dev",
-    "build": "npm run build:playground && astro build",
-    "build:playground": "node scripts/build-playground.mjs",
+    "dev": "npm run build:docs && astro dev",
+    "build": "npm run build:docs && astro build",
+    "build:docs": "node scripts/build-docs.mjs",
     "preview": "astro preview",
     "deploy": "npm run build && wrangler deploy",
     "astro": "astro",
-    "playground": "node scripts/build-playground.mjs --watch"
+    "docs": "node scripts/build-docs.mjs --watch"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.0.6",
     "chart.js": "^4.5.1",
     "iconify-icon": "^3.0.2",
